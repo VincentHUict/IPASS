@@ -33,7 +33,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	public boolean save(Probleem probleem) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"INSERT INTO probleem(id, registratiedatum) VALUES(?, ?)");
-		preparedStatement.setInt(1, probleem.getProbleem_id());
+		preparedStatement.setInt(1, probleem.getProbleemId());
 		preparedStatement.setDate(2, (Date) probleem.getRegistratieDatum());
 		return preparedStatement.executeUpdate() == 1;
 	}
@@ -42,15 +42,15 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	public boolean update(Probleem probleem) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"UPDATE probleem SET datum = ? WHERE probleemId = ?");
-		preparedStatement.setInt(1, probleem.getProbleem_id());
+		preparedStatement.setInt(1, probleem.getProbleemId());
 		preparedStatement.setDate(2, (Date) probleem.getRegistratieDatum());
 		return preparedStatement.executeUpdate() == 1;
 	}
 
 	@Override
 	public boolean delete(Probleem probleem) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM probleem WHERE probleemId = '" + probleem.getProbleem_id() + "'");
-		preparedStatement.setInt(1, probleem.getProbleem_id());
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM probleem WHERE probleemId = '" + probleem.getProbleemId() + "'");
+		preparedStatement.setInt(1, probleem.getProbleemId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 	

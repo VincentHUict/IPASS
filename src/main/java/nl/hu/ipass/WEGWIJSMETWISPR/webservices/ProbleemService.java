@@ -30,7 +30,7 @@ public class ProbleemService {
 		}
 		return result;
 	}
-	
+
 
     public List<Melding> getAllMeldingen() throws SQLException {
         MeldingPostgresDaoImpl meldingPostgresDao = new MeldingPostgresDaoImpl();

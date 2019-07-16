@@ -1,21 +1,31 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.persistence;
 
 import java.sql.Connection;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import java.sql.DriverManager;
 
-public class PostgresBaseDao {
-	protected final Connection getConnection() {
-		Connection result = null;
+public class PostgresBaseDao
+{
+    public Connection connection = null;
 
-		try {
-			InitialContext ic = new InitialContext();
-			DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/PostgresDS");
+    public PostgresBaseDao()
+    {
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            this.connection = DriverManager
+                    .getConnection("jdbc:postgresql://localhost:5432/WEGWIJSWISPR",
+                            "postgres", "geheim");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Opened database successfully");
+    }
 
-			result = ds.getConnection();
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-		return result;
-	}
+    public Connection getConnection()
+    {
+        return connection;
+    }
 }
