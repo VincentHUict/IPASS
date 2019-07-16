@@ -39,51 +39,6 @@ INSERT INTO klant(id, naam) VALUES(4, 'Job');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @WebServlet(urlPatterns = "/DynamicServlet.do")
 public class DynamicServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
