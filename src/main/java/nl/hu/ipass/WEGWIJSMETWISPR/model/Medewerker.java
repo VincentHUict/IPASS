@@ -5,15 +5,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Medewerker {
-	private static String medewerkerId;
+	private String medewerkerId;
 	private int nummer;
 	private String naam;
-	private static Date gbdatum;
+	private Date gbdatum;
 	private String adres;
-	
+
 	public Medewerker() {
 	}
-	
+
 	public Medewerker(String medewerkerId, int nummer, String naam, String gbdatum, String adres) {
 		Date datum = null;
 		try {
@@ -21,42 +21,42 @@ public class Medewerker {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.medewerkerId = medewerkerId;
 		this.nummer = nummer;
 		this.naam = naam;
 		this.gbdatum = datum;
 		this.adres = adres;
 	}
-	
-	public static String getMedewerkerId() {
-		return medewerkerId;
+
+	public String getMedewerkerId() {
+		return this.medewerkerId;
 	}
-	
+
 	public void setMedewerkerId(String medewerkerId) {
-		Medewerker.medewerkerId = medewerkerId;
+		this.medewerkerId = medewerkerId;
 	}
-	
+
 	public int getNummer() {
 		return this.nummer;
 	}
-	
+
 	public void setNummer(int nummer) {
 		this.nummer = nummer;
 	}
-	
+
 	public String getNaam() {
 		return this.naam;
 	}
-	
+
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-	
-	public static Date getGbdatum() {
-		return gbdatum;
+
+	public Date getGbdatum() {
+		return this.gbdatum;
 	}
-	
+
 	public void setGbdatum(String gbdatum) {
 		Date datum = null;
 		try {
@@ -65,13 +65,13 @@ public class Medewerker {
 			e.printStackTrace();
 		}
 		
-		Medewerker.gbdatum = datum;
+		this.gbdatum = datum;
 	}
-	
+
 	public String getAdres() {
 		return this.adres;
 	}
-	
+
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}

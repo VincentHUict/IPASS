@@ -32,8 +32,8 @@ public class OverzichtPostgresDaoImpl extends PostgresBaseDao implements Overzic
 	public boolean save(Overzicht overzicht) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"INSERT INTO overzicht(id, faq, how_to, meldingId) VALUES(?, ?, ?, ?)");
-		preparedStatement.setString(1, Overzicht.getOverzichtId());
-		preparedStatement.setString(2, overzicht.getFAQ());
+		preparedStatement.setString(1, overzicht.getOverzichtId());
+		preparedStatement.setString(2, overzicht.getFaq());
 		preparedStatement.setString(3, overzicht.getHowTo());
 		preparedStatement.setInt(4, overzicht.getMeldingId());
 		return preparedStatement.executeUpdate() == 1;
@@ -42,8 +42,8 @@ public class OverzichtPostgresDaoImpl extends PostgresBaseDao implements Overzic
 	@Override
 	public boolean update(Overzicht overzicht) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE overzicht SET faq = ?, how_to = ?, meldingId = ?  WHERE overzichtId = ?");
-		preparedStatement.setString(1, Overzicht.getOverzichtId());
-		preparedStatement.setString(2, overzicht.getFAQ());
+		preparedStatement.setString(1, overzicht.getOverzichtId());
+		preparedStatement.setString(2, overzicht.getFaq());
 		preparedStatement.setString(3, overzicht.getHowTo());
 		preparedStatement.setInt(4, overzicht.getMeldingId());
 		return preparedStatement.executeUpdate() == 1;

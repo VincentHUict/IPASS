@@ -10,7 +10,7 @@ public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements Gebruik
 		String result = null;
 		try (Connection conn = super.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(
-					"SELECT * FROM medewerkersaccount " + "WHERE gebruikersnaam = '" + naam + "' and wachtwoord = '" + ww + "'");
+					"SELECT * FROM medewerkersaccount " + "WHERE gebruikersnaam = '" + naam + "' AND wachtwoord = '" + ww + "'");
 			ResultSet dbResultSet = pstmt.executeQuery();
 
 			while (dbResultSet.next()) {

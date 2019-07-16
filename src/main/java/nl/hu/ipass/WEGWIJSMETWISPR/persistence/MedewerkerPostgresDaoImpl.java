@@ -35,10 +35,10 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres)" +
 				"VALUES(?, ?, ?, ?, ?)");
-		preparedStatement.setString(1, Medewerker.getMedewerkerId());
+		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		preparedStatement.setInt(2, medewerker.getNummer());
 		preparedStatement.setString(3, medewerker.getNaam());
-		preparedStatement.setDate(4, (Date) Medewerker.getGbdatum());
+		preparedStatement.setDate(4, (Date) medewerker.getGbdatum());
 		preparedStatement.setString(5, medewerker.getAdres());
 		return preparedStatement.executeUpdate() == 1;
 	}
@@ -46,18 +46,18 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 	@Override
 	public boolean update(Medewerker medewerker) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE medewerker SET nummer = ?, naam = ?, gbdatum = ?, adres = ? WHERE medewerkerId = ?");
-		preparedStatement.setString(1, Medewerker.getMedewerkerId());
+		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		preparedStatement.setInt(2, medewerker.getNummer());
 		preparedStatement.setString(3, medewerker.getNaam());
-		preparedStatement.setDate(4, (Date) Medewerker.getGbdatum());
+		preparedStatement.setDate(4, (Date) medewerker.getGbdatum());
 		preparedStatement.setString(5, medewerker.getAdres());
 		return preparedStatement.executeUpdate() == 1;
 	}
 
 	@Override
 	public boolean delete(Medewerker medewerker) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM medewerker WHERE medewerkerId = '" + Medewerker.getMedewerkerId() + "'");
-		preparedStatement.setString(1, Medewerker.getMedewerkerId());
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM medewerker WHERE medewerkerId = '" + medewerker.getMedewerkerId() + "'");
+		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 
@@ -67,14 +67,14 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 	}
 
 	public ArrayList<Medewerker> findByGeboortedatum(String gbdatum) throws SQLException {
-		ArrayList<Medewerker> MGeboortedatum = new ArrayList<Medewerker>();
+		ArrayList<Medewerker> mGeboortedatum = new ArrayList<>();
 		for (Medewerker medewerker : this.findAll()) {
-			if (Medewerker.getGbdatum() != null) {
-				if (Medewerker.getGbdatum().toString().equals(gbdatum)) {
-					MGeboortedatum.add(medewerker);
+			if (medewerker.getGbdatum() != null) {
+				if (medewerker.getGbdatum().toString().equals(gbdatum)) {
+					mGeboortedatum.add(medewerker);
 				}
 			}
 		}
-		return MGeboortedatum;
+		return mGeboortedatum;
 	}
 }

@@ -1,49 +1,49 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
 public class Overzicht {
-	private static String overzichtId;
-	private String FAQ;
-	private String HowTo;
+	private String overzichtId;
+	private String faq;
+	private String howTo;
 	private int meldingId;
-	
+
 	public Overzicht() {
 	}
-	
-	public Overzicht(String overzichtId, String FAQ, String HowTo, int meldingId) {
+
+	public Overzicht(String overzichtId, String faq, String howTo, int meldingId) {
 		this.overzichtId = overzichtId;
-		this.FAQ = FAQ;
-		this.HowTo = HowTo;
+		this.faq = faq;
+		this.howTo = howTo;
 		this.meldingId = meldingId;
 	}
-	
-	public static String getOverzichtId() {
-		return overzichtId;
+
+	public String getOverzichtId() {
+		return this.overzichtId;
 	}
-	
+
 	public void setOverzichtId(String overzichtId) {
-		Overzicht.overzichtId = overzichtId;
+		this.overzichtId = overzichtId;
 	}
-	
-	public String getFAQ() {
-		return this.FAQ;
+
+	public String getFaq() {
+		return this.faq;
 	}
-	
-	public void setFAQ(String FAQ) {
-		this.FAQ = FAQ;
+
+	public void setFaq(String faq) {
+		this.faq = faq;
 	}
-	
+
 	public String getHowTo() {
-		return this.HowTo;
+		return this.howTo;
 	}
-	
+
 	public void setHowTo(String HowTo) {
-		this.HowTo = HowTo;
+		this.howTo = HowTo;
 	}
-	
+
 	public int getMeldingId() {
 		return this.meldingId;
 	}
-	
+
 	public void setMeldingId(int meldingId) {
 		this.meldingId = meldingId;
 	}

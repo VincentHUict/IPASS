@@ -1,7 +1,7 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
 public class Klant {
-	private static String klantId;
+	private String klantId;
 	
 	public Klant() {
 	}
@@ -10,8 +10,8 @@ public class Klant {
 		this.klantId = klantId;
 	}
 	
-	public static String getKlantId() {
-		return klantId;
+	public String getKlantId() {
+		return this.klantId;
 	}
 	
 	public void setKlantId(String klantId) {
