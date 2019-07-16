@@ -30,7 +30,7 @@ public class ProbleemWorldResource {
 		
 		for (Probleem probleem : service.getAllProblemen()) {
 			JsonObjectBuilder job = Json.createObjectBuilder();
-			job.add("probleem_id", probleem.getProbleem_id());
+			job.add("probleemId", probleem.getProbleemId());
 			job.add("beschrijving", probleem.getBeschrijving());
 			job.add("datum", (JsonValue) probleem.getRegistratieDatum());
 			

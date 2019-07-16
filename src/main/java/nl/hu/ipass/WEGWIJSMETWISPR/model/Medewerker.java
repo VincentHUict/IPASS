@@ -64,7 +64,7 @@ public class Medewerker {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.gbdatum = datum;
 	}
 
@@ -74,5 +74,17 @@ public class Medewerker {
 
 	public void setAdres(String adres) {
 		this.adres = adres;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Medewerker{" +
+				"medewerkerId='" + medewerkerId + '\'' +
+				", nummer=" + nummer +
+				", naam='" + naam + '\'' +
+				", gbdatum=" + gbdatum +
+				", adres='" + adres + '\'' +
+				'}';
 	}
 }

@@ -47,4 +47,15 @@ public class Overzicht {
 	public void setMeldingId(int meldingId) {
 		this.meldingId = meldingId;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Overzicht{" +
+				"overzichtId='" + overzichtId + '\'' +
+				", faq='" + faq + '\'' +
+				", howTo='" + howTo + '\'' +
+				", meldingId=" + meldingId +
+				'}';
+	}
 }

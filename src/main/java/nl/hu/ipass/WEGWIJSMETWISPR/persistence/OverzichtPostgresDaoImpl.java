@@ -51,8 +51,8 @@ public class OverzichtPostgresDaoImpl extends PostgresBaseDao implements Overzic
 
 	@Override
 	public boolean delete(Overzicht overzicht) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM overzicht WHERE overzichtId = '" + Overzicht.getOverzichtId() + "'");
-		preparedStatement.setString(1, Overzicht.getOverzichtId());
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM overzicht WHERE overzichtId = '" + overzicht.getOverzichtId() + "'");
+		preparedStatement.setString(1, overzicht.getOverzichtId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 

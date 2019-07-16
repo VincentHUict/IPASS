@@ -23,7 +23,7 @@ public class ProbleemService {
 		Probleem result = null;
 		
 		for (Probleem p : probleemDao.findAll()) {
-			if (p.getProbleem_id() == probleem_id) {
+			if (p.getProbleemId() == probleem_id) {
 				result = p;
 				break;
 			}
@@ -31,10 +31,6 @@ public class ProbleemService {
 		return result;
 	}
 	
-//	public List<Probleem> getProbleemById(String probleemId) throws SQLException, ParseException {
-//      ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
-//	    return probleemPostgresDao.findById(probleemId);
-//	}
 
     public List<Melding> getAllMeldingen() throws SQLException {
         MeldingPostgresDaoImpl meldingPostgresDao = new MeldingPostgresDaoImpl();
@@ -67,13 +63,12 @@ public class ProbleemService {
     }
 
 	public Probleem saveProbleem(int probleem_id, String beschrijving, Date registratieDatum) throws SQLException {
-		Probleem p = new Probleem(probleem_id, beschrijving, registratieDatum);
-		p.setProbleem_id(probleem_id);
-		p.setBeschrijving(beschrijving);
-		p.setRegistratieDatum(registratieDatum);
+		Probleem probleem = new Probleem(probleem_id, beschrijving, registratieDatum);
+		probleem.setProbleemId(probleem_id);
+		probleem.setBeschrijving(beschrijving);
+		probleem.setRegistratieDatum(registratieDatum);
 		
-		if (probleemDao.save(p)) return p;
-		return null;
+		return (probleemDao.save(probleem)) ? probleem : null;
 	}
 	
 	public boolean deleteProbleem(int probleem_id) throws SQLException {
@@ -89,13 +84,13 @@ public class ProbleemService {
 	}
 
 	public Probleem updateProbleem(int probleem_id, String beschrijving, Date datum) throws SQLException {
-		Probleem p = probleemDao.findByProbleem_id(probleem_id);
-			p.setProbleem_id(probleem_id);
-			p.setBeschrijving(beschrijving);
-			p.setRegistratieDatum(datum);
-			if (probleemDao.update(p)) {
+		Probleem probleem = probleemDao.findByProbleem_id(probleem_id);
+			probleem.setProbleemId(probleem_id);
+			probleem.setBeschrijving(beschrijving);
+			probleem.setRegistratieDatum(datum);
+			if (probleemDao.update(probleem)) {
 				return probleemDao.findByProbleem_id(probleem_id);
 			}
-		return p;
+		return probleem;
 	}
 }

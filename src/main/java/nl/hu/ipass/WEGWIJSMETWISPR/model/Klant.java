@@ -1,5 +1,7 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Klant {
 	private String klantId;
 	
@@ -13,8 +15,16 @@ public class Klant {
 	public String getKlantId() {
 		return this.klantId;
 	}
-	
+
 	public void setKlantId(String klantId) {
 		this.klantId = klantId;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Klant{" +
+				"klantId='" + klantId + '\'' +
+				'}';
 	}
 }

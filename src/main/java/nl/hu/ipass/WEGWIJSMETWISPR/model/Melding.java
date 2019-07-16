@@ -37,15 +37,14 @@ public class Melding {
 	public void setProbleemId(int probleemId) {
 		this.probleemId = probleemId;
 	}
-	
-//	public boolean setBeoordeling() {	
-//		try (Connection myConn = new DriverManager.getConnection()) {
-//			Statement myStmt = myConn.createStatement();
-//			ResultSet myRs = myStmt.executeQuery("T");
-//			return true;
-//		} catch (Exception exc) {
-//			exc.printStackTrace();
-//		}
-//		return false;
-//	}
+
+	@Override
+	public String toString()
+	{
+		return "Melding{" +
+				"meldingId=" + meldingId +
+				", beoordeling=" + beoordeling +
+				", probleemId=" + probleemId +
+				'}';
+	}
 }
