@@ -1,0 +1,171 @@
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body {
+	background: white;
+	margin: 2;
+	height: 100%;
+	font-family: verdana;
+}
+
+h1 {
+	font-family: 'Bebas neue Regular' sans serif;
+	font-size: 28px;
+	color: #243949;
+	letter-spacing: .05em;
+	text-align: center;
+}
+
+h2 {
+	font-family: 'Bebas neue Regular' sans serif;
+	font-size: 22px;
+	color: #243949;
+	letter-spacing: .05em;
+	text-align: center;
+}
+
+.p1 {
+	font-family: verdana;
+	font-size: 14px;
+	text-align: center;
+}
+
+.p2 {
+	font-family: sans serif;
+	font-size: 13px;
+	color: #222;
+}
+
+.nav-main {
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	font-family: sans serif;
+}
+
+.nav-logo {
+	float: left;
+	padding: 0px 150px;
+}
+
+.nav-main ul {
+	margin: 0;
+	padding: 0;
+	float: right;
+	list-style-type: none;
+}
+
+.nav-main > ul > li {
+	float: left;
+}
+
+.nav-item {
+	display: inline-block;
+	padding: 6px 30px;
+	line-height: 40px;
+	color: #9499a3;
+	text-decoration: none;
+}
+
+.nav-item:hover {
+	color: #243949;
+}
+
+.nav-item:focus {
+	color: #243949;
+}
+
+.nav-item:active {
+	color: #243949;
+}
+
+.nav-item:focus ~ .nav-content {
+	max-height: 400px;
+	-webkit-transition: max-height 0.4s ease-in;
+	-moz-transition: max-height 0.4s ease-in;
+}
+
+.nav-content {
+	position: absolute;
+	background: #fff;
+	color: #fff;
+	padding: 20px;
+	overflow: hidden;
+}
+
+.nav-content ul li a {
+	display: none;
+	color: #9499a3;
+	text-decoration: none;
+	padding: 0px 10px;
+}
+
+span:hover + .nav-content ul li a {
+	display: block;
+}
+
+.nav-content a:hover {
+	color: #243949;
+}
+
+.nav-content:focus {
+	color: #243949;
+}
+
+.nav-content:hover ul li a {
+	display:block !important;
+}
+
+button.collapsed {
+  background-color: #fff;
+  color: #243949;
+  cursor: pointer;
+  padding: 18px 80px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+div.incollapse {
+  background-color: #fff;
+  color: #3d607a;
+  padding: 0px 80px;
+  width: 100%;
+  max-height: 1;
+  border: none;
+  font-size: 13px;
+  margin: 0 auto;
+  text-align: left;
+  outline: none;
+  overflow: hidden;
+  -moz-transition: all .5s linear;
+  -webkit-transition: all .5s linear;
+  -o-transition: all .5s linear;
+  transition: all .5s linear;
+}
+
+.active, .collapsed:hover {
+  background-color: #fff;
+  color: #243949;
+}
+
+.howto {
+  padding: 0px 40px;
+  background-color: #fff;
+}
+
+footer {
+	display: block;
+	position: bottom;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	padding: 1rem;
+	color: #fff;
+	text-align: center;
+}

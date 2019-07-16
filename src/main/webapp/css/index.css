@@ -1,0 +1,127 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	color: #243949;
+	margin: 0;
+	padding: 0;
+	font-family: 'Bebas neue Regular' sans serif;
+	background: white;
+}
+
+@media (max-width: 768px) {
+	.display-4 {
+		font-size: 200%;
+	}
+	.display-5 {
+		font-size: 150%;
+	}
+}
+
+.navbar {
+	background: #fff !important;
+}
+.navbar .nav-item .nav-link {
+    color: #243949; 
+}
+.navbar-nav {
+	text-align: right;
+}
+.navbar .nav-item .nav-link:hover {
+	color: #9499a3;
+}
+.navbar .nav-item {
+	text-align: right;
+}
+
+.padding {
+	padding-bottom: 2rem;
+}
+
+.welcome {
+	padding-top: 1rem;
+}
+
+.dropdown {
+    border-radius: 0;
+    border: 0;
+}
+.dropdown-menu {
+    background: #fff;
+    border: 0;
+    top: 80%;
+    border-radius: 0px 0px 5px 5px;
+}
+.dropdown-item:hover { 
+    background: #fff;
+    color: #9499a3;
+}
+.dropdown-menu a {
+	color: #243949;
+} 
+
+.col-12left {
+	float: left;
+	padding: 100px 100px;
+	text-align: left;
+}
+.col-12right {
+	float: right;
+}
+.col-12left2 {
+	float: left;
+	padding: 100px 150px;
+	text-align: center;
+}
+
+.button {
+  border-radius: 8px;
+  background-color: #0facf3;
+  border: none;
+  color: #FFF;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  padding: 8px;
+  width: 180px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0px;
+  transition: 0.5s;
+}
+.button:hover {
+	background-color: #9499a3;
+	color: #243949;
+}
+
+.my-1 {
+	border-top: 5px solid #0facf3;
+	width: 100%;
+	margin-top: .1rem;
+	margin-bottom: .1rem;
+}
+
+.light {
+	background-color: #0facf3;
+}
+.col-12 {
+	text-align: center;
+}
+
+footer {
+	background-color: #2c2c2c; 
+	color: #9499a3;
+	padding-top: 2rem;
+}

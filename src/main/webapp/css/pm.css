@@ -1,0 +1,121 @@
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body {
+	background: white;
+	margin: 2;
+	height: 100%;
+	font-family: verdana;
+}
+
+h1 {
+	font-family: 'Bebas neue Regular' sans serif;
+	font-size: 28px;
+	color: #243949;
+	letter-spacing: .05em;
+}
+
+.p1 {
+	font-family: verdana;
+	font-size: 14px;
+	float: left;
+}
+
+.p2 {
+	font-family: sans serif;
+	font-size: 13px;
+	color: #222;
+}
+
+.nav-main {
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	font-family: sans serif;
+}
+
+.nav-logo {
+	float: left;
+	padding: 0px 150px;
+}
+
+.nav-main ul {
+	margin: 0;
+	padding: 0;
+	float: right;
+	list-style-type: none;
+}
+
+.nav-main > ul > li {
+	float: left;
+}
+
+.nav-item {
+	display: inline-block;
+	padding: 6px 30px;
+	line-height: 40px;
+	color: #9499a3;
+	text-decoration: none;
+}
+
+.nav-item:hover {
+	color: #243949;
+}
+
+.nav-item:focus {
+	color: #243949;
+}
+
+.nav-item:active {
+	color: #243949;
+}
+
+.nav-item:focus ~ .nav-content {
+	max-height: 400px;
+	-webkit-transition: max-height 0.4s ease-in;
+	-moz-transition: max-height 0.4s ease-in;
+}
+
+.nav-content {
+	position: absolute;
+	background: #fff;
+	color: #fff;
+	padding: 20px;
+	overflow: hidden;
+}
+
+.nav-content ul li a {
+	display: none;
+	color: #9499a3;
+	text-decoration: none;
+	padding: 0px 10px;
+}
+
+span:hover + .nav-content ul li a {
+	display: block;
+}
+
+.nav-content a:hover {
+	color: #243949;
+}
+
+.nav-content:focus {
+	color: #243949;
+}
+
+.nav-content:hover ul li a {
+	display:block !important;
+}
+footer {
+	display: block;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	padding: 1rem;
+	color: #fff;
+	text-align: center;
+}

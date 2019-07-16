@@ -1,0 +1,109 @@
+aaaaaaaaaaaaaaaaaantekeningen
+
+INSERT INTO probleem(id, datum) VALUES(1, '01-10-2018');
+INSERT INTO probleem(id, datum) VALUES(2, '04-09-2015');
+INSERT INTO probleem(id, datum) VALUES(3, '11-09-2003');
+INSERT INTO probleem(id, datum) VALUES(4, '09-03-2009');
+
+
+
+INSERT INTO melding(id, beoordeling, probleem_id) VALUES(1, 'Y', 1);
+INSERT INTO melding(id, beoordeling, probleem_id) VALUES(2, 'Y', 4);
+INSERT INTO melding(id, beoordeling, probleem_id) VALUES(3, 'N', 2);
+INSERT INTO melding(id, beoordeling, probleem_id) VALUES(4, 'Y', 3);
+
+
+
+INSERT INTO overzicht(id, faq, how_to, melding_id) VALUES(1, 'waarom', 'hoe', 1);
+INSERT INTO overzicht(id, faq, how_to, melding_id) VALUES(22, 'wanneer', 'hoe dan', 1);
+INSERT INTO overzicht(id, faq, how_to, melding_id) VALUES(33, null, 'hahaha', 1);
+INSERT INTO overzicht(id, faq, how_to, melding_id) VALUES(44, null, 'hahaha', 1);
+
+
+
+INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(1, 11, 'Jesse', '10-12-1960', 'Stationsstraat 45');
+INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(2, 34, 'Joost', '01-05-2000', 'Dorpstraat 20');
+INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(3, 12, 'Jantje', '09-03-1985', 'Brugweg 12');
+
+
+
+INSERT INTO klant(id, naam) VALUES(1, 'Joost');
+INSERT INTO klant(id, naam) VALUES(2, 'Jasper');
+INSERT INTO klant(id, naam) VALUES(3, 'Jannes');
+INSERT INTO klant(id, naam) VALUES(4, 'Job');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@WebServlet(urlPatterns = "/DynamicServlet.do")
+public class DynamicServlet extends HttpServlet {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String naam = req.getParameter("gebruikersnaam");
+		String ip = req.getRemoteAddr();
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("text/html");
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println(" <title>Helpdesk Wispr</title>");
+		out.println(" <body>");
+		out.println(" <h2>Wegwijs met Wispr</h2>");
+		out.println(" <h2>Hallo " + naam + "!</h2>");
+		out.println(" <h2>Jouw IP adres is: " + ip + "</h2>");
+		out.println(" </body>");
+		out.println("</html>");
+	}
+}
+
+
+
+
+
