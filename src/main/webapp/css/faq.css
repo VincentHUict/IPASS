@@ -1,171 +1,149 @@
-html {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-
-body {
-	background: white;
-	margin: 2;
+html, body {
 	height: 100%;
-	font-family: verdana;
-}
-
-h1 {
-	font-family: 'Bebas neue Regular' sans serif;
-	font-size: 28px;
-	color: #243949;
-	letter-spacing: .05em;
-	text-align: center;	
-}
-
-h2 {
-	font-family: 'Bebas neue Regular' sans serif;
-	font-size: 22px;
-	color: #243949;
-	letter-spacing: .05em;
-	text-align: center;
-}
-
-.p1 {
-	font-family: verdana;
-	font-size: 14px;
-	text-align: center;
-}
-
-.p2 {
-	font-family: sans serif;
-	font-size: 13px;
-	color: #222;
-}
-
-.nav-main {
 	width: 100%;
-	height: 50px;
-	background: #fff;
-	font-family: sans serif;
-}
-
-.nav-logo {
-	float: left;
-	padding: 0px 150px;
-}
-
-.nav-main ul {
+	color: #243949;
 	margin: 0;
 	padding: 0;
-	float: right;
-	list-style-type: none;
+	font-family: 'Bebas neue Regular' sans serif;
+	background: white;
 }
 
-.nav-main > ul > li {
+@media (max-width: 768px) {
+	.display-4 {
+		font-size: 200%;
+	}
+	.display-5 {
+		font-size: 150%;
+	}
+}
+
+.navbar {
+	background: #fff !important;
+}
+.navbar .nav-item .nav-link {
+    color: #243949; 
+}
+.navbar-nav {
+	text-align: right;
+}
+.navbar .nav-item .nav-link:hover {
+	color: #9499a3;
+}
+
+.padding {
+	padding-bottom: 2rem;
+}
+
+.welcome {
+	padding-top: 1rem;
+}
+
+.dropdown {
+    border-radius: 0;
+    border: 0;
+}
+.dropdown-menu {
+    background: #fff;
+    border: 0;
+    top: 80%;
+    border-radius: 0px 0px 5px 5px;
+}
+.dropdown-item:hover { 
+    background: #fff;
+    color: #9499a3;
+}
+.dropdown-menu a {
+	color: #243949;
+}
+
+.col-12left {
 	float: left;
+	padding: 25px 100px;
+	text-align: left;
+}
+.col-12left2 {
+	float: left;
+	padding: 80px 150px 60px;
+	text-align: center;
 }
 
-.nav-item {
-	display: inline-block;
-	padding: 6px 30px;
-	line-height: 40px;
-	color: #9499a3;
-	text-decoration: none;
+.button {
+  border-radius: 8px;
+  background-color: #0facf3;
+  border: none;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  padding: 8px;
+  width: 180px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
-
-.nav-item:hover {
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0px;
+  transition: 0.5s;
+}
+.button:hover {
+	background-color: #9499a3;
 	color: #243949;
 }
 
-.nav-item:focus {
-	color: #243949;
-}
-
-.nav-item:active {
-	color: #243949;
-}
-
-.nav-item:focus ~ .nav-content {
-	max-height: 400px;
-	-webkit-transition: max-height 0.4s ease-in;
-	-moz-transition: max-height 0.4s ease-in;
-}
-
-.nav-content {
-	position: absolute;
-	background: #fff;
-	color: #fff;
-	padding: 20px;
-	overflow: hidden;
-}
-
-.nav-content ul li a {
-	display: none;
-	color: #9499a3;
-	text-decoration: none;
-	padding: 0px 10px;
-}
-
-span:hover + .nav-content ul li a {
-	display: block;
-}
-
-.nav-content a:hover {
-	color: #243949;
-}
-
-.nav-content:focus {
-	color: #243949;
-}
-
-.nav-content:hover ul li a {
-	display:block !important;
-}
-
-button.collapsed {
+button.button-in {
   background-color: #fff;
   color: #243949;
   cursor: pointer;
-  padding: 18px 80px;
-  width: 100%;
   border: none;
-  text-align: left;
-  outline: none;
   font-size: 15px;
 }
 
-div.incollapse {
+div.button-out {
   background-color: #fff;
   color: #3d607a;
-  padding: 0px 80px;
-  width: 100%;
+  padding: 20px 70px;
   max-height: 1;
   border: none;
   font-size: 13px;
   margin: 0 auto;
-  text-align: left;
   outline: none;
   overflow: hidden;
+  visibility: ;
   -moz-transition: all .5s linear;
   -webkit-transition: all .5s linear;
   -o-transition: all .5s linear;
   transition: all .5s linear;
 }
-
-.active, .collapsed:hover {
-  background-color: #fff;
-  color: #243949;
+div.button-out:click {
+	visibility: none;
 }
 
-.faq {
-  padding: 0px 40px;
-  background-color: #fff;
+.my-1 {
+	border-top: 5px solid #0facf3;
+	width: 100%;
+	margin-top: .1rem;
+	margin-bottom: .1rem;
+}
+
+.light {
+	background-color: #0facf3;
+}
+.col-12 {
+	text-align: center;
 }
 
 footer {
-	display: block;
-	position: bottom;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
-	padding: 1rem;
-	color: #fff;
-	text-align: center;
+	background-color: #2c2c2c; 
+	color: #9499a3;
+	padding-top: 2rem;
 }

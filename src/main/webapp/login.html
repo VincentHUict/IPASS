@@ -1,48 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width-device-width, initial-scale=1">
 	<title>Wegwijs met Wispr</title>
-	<style type="text/css"></style>
-	<link rel="stylesheet" href="css/login.css">
-	<link rel="icon" href="https://wispr.tech/images/logo.png">
-	<script type="text/javascript" async src="js/login.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
-	<nav class="nav-main">
-		<img src="https://pbs.twimg.com/profile_images/1047917455555870721/WGtP2QNH.jpg" alt="projectlogo" style="width:50px;height:50px;" class="nav-logo">	
-		<ul>
-			<li><a href="index.html" class="nav-item">HOME</a></li>
-			<li><a href="howto.html" class="nav-item">HOWTO</a></li>
-			<li><a href="faq.html" class="nav-item">VEELGESTELDE VRAGEN</a></li>
-			<li><span><a href="pm.html" class="nav-item">PROBLEEMMELDINGEN</a></span>
-				<div class="nav-content">
-					<ul>
-						<li><a href="pm.html">MELD EEN PROBLEEM</a></li>
-						<li><a href="pm.html">OVERZICHT</a></li>
-						<li><a href="pm.html">ZOEKEN</a></li>
-					</ul>	
-				</div>
-			</li>
-			<li><a href="login.html" class="nav-item">LOGIN</a></li>
-		</ul>
+
+	<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top shadow p-4 mb-4 bg-white">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<a class="navbar-brand" href="index.html"> 
+			<img src="https://pbs.twimg.com/profile_images/1047917455555870721/WGtP2QNH.jpg" alt="projectlogo" style="width:50px; height:50px;">
+		</a>
+
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">HOME</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="howto.html">HOWTO</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="faq.html">VEELGESTELDE VRAGEN</a>
+				</li>
+				<li class="nav-item dropdown dmenu">
+					<a class="nav-link dropdown-toggle" href="pm.html" id="navbardrop" data-toggle="dropdown">PROBLEEMMELDINGEN</a>
+					<div class="dropdown-menu sm-menu">
+						<a class="dropdown-item" href="pm.html">MELD EEN PROBLEEM</a> 
+						<a class="dropdown-item" href="pm.html">OVERZICHT</a>
+					</div>
+				</li>
+			</ul>
+
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="ZOEKEN" aria-label="Search" />
+			<button class="btn btn-outline-default my-2 my-sm-0 fa fa-search" type="submit"></button>			
+		</form>
+
+		</div>
 	</nav>
 	
-	<div class="login">
-		<div class="card">
-			<form id="loginform">
-				<input type="text" name="gebruikersnaam" id="gebruikersnaam" /><br>
-				<input type="password" name="wachtwoord" id="password" /><br>
-				<input type="button" value="login" id="login" />
-			</form>
+	<div class="container-fluid padding">
+		<div class="row text-center padding">
+			<div class="form-group">
+				<div class="card">
+					<input type="text" name="gebruikersnaam" id="username" />
+					<input type="password" name="wachtwoord" id="password" />
+					<input type="button" value="login" id="login" />
+				</div>
+			</div>
 		</div>
 	</div>
 	
 	<footer>
-	<hr>
-	<p class="p2">Deze webapplicatie wordt mede mogelijk gemaakt door Vincent Sels, student ICT aan de Hogeschool Utrecht.</p>
+		<div class="container-fluid padding">
+			<div class="row text-center">
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Contact</h4><br>
+					<p>Mail - info@wispr.tech</p>
+					<p>Facebook - @WisprTech</p>
+					<p>Twitter - @WisprTech</p>
+				</div>
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Inloggen</h4><br>
+					<p>Wat ontzettend tof dat je al klant bent! Log nu hier in.</p>
+					<a href="login.html"><button class="button">Inloggen</button></a>
+				</div>
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Registreren</h4><br>
+					<p>Nog geen klant? Registreer nu!</p>
+					<a href="reg.html"><button class="button">Registreren</button></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid padding">
+			<hr class="light">
+			<p class="col-12">Deze webapplicatie is mede mogelijk gemaakt door Vincent Sels, student HBO-ICT.</p>
+		</div>
 	</footer>
+
+	<script>
+		$(document).ready(function() {
+			$('.navbar-light .dmenu').hover(function() {
+				$(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+			}, function() {
+				$(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+			});
+		});
+	</script>
 </body>
 </html>

@@ -29,9 +29,6 @@ html, body {
 .navbar .nav-item .nav-link:hover {
 	color: #9499a3;
 }
-.navbar .nav-item {
-	text-align: right;
-}
 
 .padding {
 	padding-bottom: 2rem;
@@ -69,7 +66,7 @@ html, body {
 }
 .col-12left2 {
 	float: left;
-	padding: 100px 150px;
+	padding: 80px 150px 60px;
 	text-align: center;
 }
 

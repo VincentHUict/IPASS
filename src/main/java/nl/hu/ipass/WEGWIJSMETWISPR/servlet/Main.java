@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/IpassProject.do")
 public class Main extends HttpServlet {
+	
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String naam = req.getParameter(getServletName());
+		String name = req.getParameter("username");
 		String ip = req.getRemoteAddr();
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
-		out.println(naam + ip + "jemoeder");
+		out.println(name + ip + "jemoeder");
 	}
 }

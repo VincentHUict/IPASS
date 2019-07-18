@@ -1,69 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width-device-width, initial-scale=1">
 	<title>Wegwijs met Wispr</title>
-	<style type="text/css"></style>
-	<link rel="stylesheet" href="css/faq.css">
-	<link rel="icon" href="https://wispr.tech/images/logo.png">
-	<script type="text/javascript" async src="js/faq.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" type="text/css" href="css/faq.css">
 </head>
 <body>
-	<nav class="nav-main">
-		<img src="https://pbs.twimg.com/profile_images/1047917455555870721/WGtP2QNH.jpg" alt="projectlogo" style="width:50px;height:50px;" class="nav-logo">	
-		<ul>
-			<li><a href="index.html" class="nav-item">HOME</a></li>
-			<li><a href="howto.html" class="nav-item">HOWTO</a></li>
-			<li><a href="faq.html" class="nav-item">VEELGESTELDE VRAGEN</a></li>
-			<li><span><a href="pm.html" class="nav-item">PROBLEEMMELDINGEN</a></span>
-				<div class="nav-content">
-					<ul>
-						<li><a href="pm.html">MELD EEN PROBLEEM</a></li>
-						<li><a href="pm.html">OVERZICHT</a></li>
-						<li><a href="pm.html">ZOEKEN</a></li>
-					</ul>	
-				</div>
-			</li>
-			<li><a href="login.html" class="nav-item">LOGIN</a></li>
-		</ul>
+
+	<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top shadow p-4 mb-4 bg-white">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<a class="navbar-brand" href="index.html"> 
+			<img src="https://pbs.twimg.com/profile_images/1047917455555870721/WGtP2QNH.jpg" alt="projectlogo" style="width:50px; height:50px;">
+		</a>
+
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">HOME</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="howto.html">HOWTO</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="faq.html">VEELGESTELDE VRAGEN</a>
+				</li>
+				<li class="nav-item dropdown dmenu">
+					<a class="nav-link dropdown-toggle" href="pm.html" id="navbardrop" data-toggle="dropdown">PROBLEEMMELDINGEN</a>
+					<div class="dropdown-menu sm-menu">
+						<a class="dropdown-item" href="pm.html">MELD EEN PROBLEEM</a> 
+						<a class="dropdown-item" href="pm.html">OVERZICHT</a>
+					</div>
+				</li>
+			</ul>
+
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="ZOEKEN" aria-label="Search" />
+			<button class="btn btn-outline-default my-2 my-sm-0 fa fa-search" type="submit"></button>			
+		</form>
+
+		</div>
 	</nav>
-	<br>
-	<h1>Veelgestelde vragen</h1>
-	<p class="p1">Antwoord op alle vragen<br></p>
-	
-	<section class="section">
-		<div class="container">
-			<h2><br><br>Algemeen</h2>
-			<div class="faq">
-				<button class="collapsed" type="button">
-					Waarom is Wispr opgericht?
-				</button>
-				<div class="incollapse">
-					Wispr is ontstaan uit onvrede over ESP2. Wispr is verder<br>gegaan als zogenaamde 'fork', een opsplitsing. Forks 
-					<br>ontstaan uit onvrede of wanneer verschillende partijen<br>een andere visie hebben.
+
+	<div class="container-fluid padding">
+		<div class="row welcome text-center">
+			<div class="col-12">
+				<h1 class="display-4">Veelgestelde vragen</h1>
+				<h2 class="display-5">Antwoord op alle vragen</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid padding">
+		<div class="row text-center padding">
+			<div class="col-12left">
+				<button class="button-in">Waarom is Wispr opgericht?</button>
+				<div class="button-out">
+					Wispr is ontstaan uit onvrede over ESP2. Wispr is verder gegaan
+					als zogenaamde 'fork', een opsplitsing. Forks <br>ontstaan uit
+					onvrede of wanneer verschillende partijen een andere visie
+					hebben.
 				</div>
-				<button class="collapsed" type="button">
-					Wat is precies het doel van Wispr?
-				</button>
-				<div class="incollapse">
-					Het doel van Wispr is om een volledig gedecentraliseerde<br>communicatiemogelijkheid op te zetten. Zo worden alle 
-					<br>derde partijen vermeden en wordt privacy maximaal<br>gewaarborgd.
+			</div>
+			<div class="col-12left">
+				<button class="button-in">Wat is precies het doel van Wispr?</button>
+				<div class="button-out">
+					Het doel van Wispr is om een volledig gedecentraliseerde 
+					communicatiemogelijkheid op te zetten. Zo worden<br>alle derde partijen vermeden en
+					wordt privacy maximaal gewaarborgd.
 				</div>
-				<button class="collapsed" type="button">
-					Hoezo denken jullie dat een project van dergelijke grootte ooit gaat slagen?
-				</button>
-				<div class="incollapse">
-					Wispr wilt iedereen van een manier voorzien om, zonder<br>inmenging, een mening te hebben en te delen. Wispr<br>streeft 
-					hiernaar omdat een ieder recht heeft op<br>meningsuiting zonder dat er partijen meekijken.
+			</div>
+			<div class="col-12left">
+				<button class="button-in">Hoezo denken jullie dat een project van dergelijke grootte ooit gaat slagen?</button>
+				<div class="button-out">
+					Wispr wilt iedereen van een manier voorzien om, zonder inmenging,
+					een mening te hebben en te delen. Wispr streeft<br>hiernaar
+					omdat een ieder recht heeft op meningsuiting zonder dat er
+					partijen meekijken.
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+
+	<hr class="my-1">
+	<div class="container-fluid padding">
+		<div class="row text-center padding">
+			<div class="col-12left2">
+				<h3>Geen juist antwoord?</h3>
+				<p>Je kan <a href="pm.html">hier</a> altijd je eigen vragen stellen. </p>
+			</div>
+			<div class="col-12left2">
+				<h3>Liever begeleiding?</h3>
+				<p>Op <a href="howto.html">deze</a> pagina vind je rondleidingen en begeleiding.</p>
+			</div>
+		</div>
+	</div>	
+
+	<footer>
+		<div class="container-fluid padding">
+			<div class="row text-center">
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Contact</h4><br>
+					<p>Mail - info@wispr.tech</p>
+					<p>Facebook - @WisprTech</p>
+					<p>Twitter - @WisprTech</p>
+				</div>
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Inloggen</h4><br>
+					<p>Wat ontzettend tof dat je al klant bent! Log nu hier in.</p>
+					<a href="login.html"><button class="button">Inloggen</button></a>
+				</div>
+				<div class="col-12 col-md-4 feature-1">
+					<h4>Registreren</h4><br>
+					<p>Nog geen klant? Registreer nu!</p>
+					<a href="reg.html"><button class="button">Registreren</button></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid padding">
+			<hr class="light">
+			<p class="col-12">Deze webapplicatie is mede mogelijk gemaakt door Vincent Sels, student HBO-ICT.</p>
+		</div>
+	</footer>
+
+	<script>
+		$(document).ready(function() {
+			$('.navbar-light .dmenu').hover(function() {
+				$(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+			}, function() {
+				$(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+			});
+		});
+	</script>
 </body>
-<footer>
-	<hr>
-	<p class="p2">Deze webapplicatie wordt mede mogelijk gemaakt door Vincent Sels, student ICT aan de Hogeschool Utrecht.</p>
-</footer>
 </html>
