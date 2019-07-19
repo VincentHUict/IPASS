@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 
 @Path("/problemen")
 public class ProbleemResource {
+	
 	@GET
 	@RolesAllowed({"user", "admin"})
 	@Produces("application/json")

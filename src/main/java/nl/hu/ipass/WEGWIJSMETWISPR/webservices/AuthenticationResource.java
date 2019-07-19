@@ -28,8 +28,8 @@ public class AuthenticationResource {
 	@RolesAllowed({"user", "admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response authenticateUser(@FormParam("gebruikersnaam") String nm, 
-									 @FormParam("wachtwoord") String ww) {
+	public Response authenticateUser(@FormParam("username") String nm, 
+									 @FormParam("password") String ww) {
 		try {
 			GebruikerDao dao = new GebruikerPostgresDaoImpl();
 			String rol = dao.findRoleForGebruiker(nm, ww);

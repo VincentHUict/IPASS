@@ -20,7 +20,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	public void filter(ContainerRequestContext requestCtx) throws IOException {
 		boolean isSecure = requestCtx.getSecurityContext().isSecure();
 
-		MySecurityContext msc = new MySecurityContext("Onbekend", "klant", isSecure);
+		MySecurityContext msc = new MySecurityContext("Unknown", "guest", isSecure);
 
 		String authHeader = requestCtx.getHeaderString(HttpHeaders.AUTHORIZATION);
 
@@ -32,7 +32,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 				Claims claims = parser.parseClaimsJws(token).getBody();
 
 				String user = claims.getSubject();
-				String role = claims.get("rol").toString();
+				String role = claims.get("role").toString();
 				msc = new MySecurityContext(user, role, isSecure);
 			} catch (JwtException | IllegalArgumentException e) {
 				System.out.println("Ongeldige JWT, gaat door als klant!");

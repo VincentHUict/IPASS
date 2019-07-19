@@ -34,6 +34,11 @@ INSERT INTO klant(id, naam) VALUES(4, 'Job');
 
 
 
+INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES('Vincent', 'geheim', 'admin');
+INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES('Joop', 'geheim', 'user');
+INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES('Vincent', 'geheim', 'user');
+INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES('Jesper', 'gekkie', 'user');
+
 
 
 
