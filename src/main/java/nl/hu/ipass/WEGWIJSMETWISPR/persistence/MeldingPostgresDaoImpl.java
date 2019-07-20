@@ -18,7 +18,7 @@ public class MeldingPostgresDaoImpl extends PostgresBaseDao implements MeldingDa
 
 	@Override
 	public List<Melding> findAll() throws SQLException {
-		return getList(super.getConnection().prepareStatement("SELECT * FROM melding").executeQuery());
+		return getList(super.getConnection().prepareStatement("SELECT * FROM melding;").executeQuery());
 	}
 
 	private List<Melding> getList(ResultSet resultSet) throws SQLException {
@@ -38,7 +38,7 @@ public class MeldingPostgresDaoImpl extends PostgresBaseDao implements MeldingDa
 	public boolean save(Melding melding) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"INSERT INTO melding(meldingId, beoordeling, probleemId)" +
-				"VALUES (?, ?, ?)");
+				"VALUES (?, ?, ?);");
 		preparedStatement.setInt(1, melding.getMeldingId());
 		preparedStatement.setBoolean(2, melding.getBeoordeling());
 		preparedStatement.setInt(3, melding.getProbleemId());
@@ -47,7 +47,7 @@ public class MeldingPostgresDaoImpl extends PostgresBaseDao implements MeldingDa
 
 	@Override
 	public boolean update(Melding melding) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE melding SET beoordeling = ?, probleemId = ? WHERE meldingId = ?");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE melding SET beoordeling = ?, probleemId = ? WHERE meldingId = ?;");
 		preparedStatement.setInt(1, melding.getMeldingId());
 		preparedStatement.setBoolean(2, melding.getBeoordeling());
 		preparedStatement.setInt(3, melding.getProbleemId());
@@ -56,7 +56,7 @@ public class MeldingPostgresDaoImpl extends PostgresBaseDao implements MeldingDa
 
 	@Override
 	public boolean delete(Melding melding) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM melding WHERE meldingId = '" + melding.getMeldingId() + "'");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM melding WHERE meldingId = '" + melding.getMeldingId() + "';");
 		preparedStatement.setInt(1, melding.getMeldingId());
 		return preparedStatement.executeUpdate() == 1;
 	}

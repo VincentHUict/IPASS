@@ -1,13 +1,7 @@
-window.onload = function() {
-	var a = false;
-	
-	document.getElementById('collapsed').onclick = function() {
-		if(a == false) {
-			document.getElementById('incollapse').style.maxHeight = '10px';
-			a = false;
-		} else {
-			document.getElementById('incollapse').style.maxHeight = '0px';
-			a = false;
-		}
-	}
-}
+$(document).ready(function() {
+	$('.navbar-light .dmenu').hover(function() {
+		$(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+	}, function() {
+		$(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+	});
+});

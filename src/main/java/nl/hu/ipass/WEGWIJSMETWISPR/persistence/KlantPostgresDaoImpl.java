@@ -13,7 +13,7 @@ public class KlantPostgresDaoImpl extends PostgresBaseDao implements KlantDao {
 
 	@Override
 	public List<Klant> findAll() throws SQLException {
-		return getList(super.getConnection().prepareStatement("SELECT * FROM klant").executeQuery());
+		return getList(super.getConnection().prepareStatement("SELECT * FROM klant;").executeQuery());
 	}
 
 	private List<Klant> getList(ResultSet resultSet) throws SQLException {
@@ -30,21 +30,21 @@ public class KlantPostgresDaoImpl extends PostgresBaseDao implements KlantDao {
 	
 	@Override
 	public boolean save(Klant klant) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("INSERT INTO klant(id) VALUES(?)");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("INSERT INTO klant(id, naam) VALUES(?, ?);");
 		preparedStatement.setString(1, klant.getKlantId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 
 	@Override
 	public boolean update(Klant klant) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE klant SET klantId = ? WHERE klantId = ?");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE klant SET klantId = ? WHERE klantId = ?;");
 		preparedStatement.setString(1, klant.getKlantId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 
 	@Override
 	public boolean delete(Klant klant) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM klant WHERE klantId = '" + klant.getKlantId() + "'");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM klant WHERE klantId = '" + klant.getKlantId() + "';");
 		preparedStatement.setString(1, klant.getKlantId());
 		return preparedStatement.executeUpdate() == 1;
 	}

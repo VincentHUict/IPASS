@@ -14,7 +14,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 
 	@Override
 	public List<Probleem> findAll() throws SQLException {
-		return getList(super.getConnection().prepareStatement("SELECT * FROM probleem").executeQuery());
+		return getList(super.getConnection().prepareStatement("SELECT * FROM probleem;").executeQuery());
 	}
 
 	private List<Probleem> getList(ResultSet resultSet) throws SQLException {
@@ -32,7 +32,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	@Override
 	public boolean save(Probleem probleem) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
-				"INSERT INTO probleem(id, beschrijving, datum) VALUES(?, ?)");
+				"INSERT INTO probleem(id, beschrijving, datum) VALUES(?, ?, ?);");
 		preparedStatement.setInt(1, probleem.getProbleemId());
 		preparedStatement.setDate(2, (Date) probleem.getRegistratieDatum());
 		return preparedStatement.executeUpdate() == 1;
@@ -41,7 +41,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	@Override
 	public boolean update(Probleem probleem) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
-				"UPDATE probleem SET datum = ? WHERE probleemId = ?");
+				"UPDATE probleem SET datum = ? WHERE probleemId = ?;");
 		preparedStatement.setInt(1, probleem.getProbleemId());
 		preparedStatement.setDate(2, (Date) probleem.getRegistratieDatum());
 		return preparedStatement.executeUpdate() == 1;
@@ -49,13 +49,13 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 
 	@Override
 	public boolean delete(Probleem probleem) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM probleem WHERE probleemId = '" + probleem.getProbleemId() + "'");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM probleem WHERE probleemId = '" + probleem.getProbleemId() + "';");
 		preparedStatement.setInt(1, probleem.getProbleemId());
 		return preparedStatement.executeUpdate() == 1;
 	}
 	
 	public List<Probleem> findById(String probleemId) throws ParseException, SQLException {
-		return getList(super.getConnection().prepareStatement("SELECT id FROM probleem WHERE id = ?").executeQuery());
+		return getList(super.getConnection().prepareStatement("SELECT id FROM probleem WHERE id = ?;").executeQuery());
 	}
 
 	@Override

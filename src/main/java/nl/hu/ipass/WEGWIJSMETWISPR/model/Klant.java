@@ -1,7 +1,5 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Klant {
 	private String klantId;
 	

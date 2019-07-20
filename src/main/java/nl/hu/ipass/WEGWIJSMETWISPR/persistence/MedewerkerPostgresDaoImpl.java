@@ -13,7 +13,7 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 
 	@Override
 	public List<Medewerker> findAll() throws SQLException {
-		return getList(super.getConnection().prepareStatement("SELECT * FROM medewerker").executeQuery());
+		return getList(super.getConnection().prepareStatement("SELECT * FROM medewerker;").executeQuery());
 	}
 
 	private List<Medewerker> getList(ResultSet resultSet) throws SQLException {
@@ -34,7 +34,7 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 	public boolean save(Medewerker medewerker) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
 				"INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres)" +
-				"VALUES(?, ?, ?, ?, ?)");
+				"VALUES(?, ?, ?, ?, ?);");
 		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		preparedStatement.setInt(2, medewerker.getNummer());
 		preparedStatement.setString(3, medewerker.getNaam());
@@ -45,7 +45,7 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 
 	@Override
 	public boolean update(Medewerker medewerker) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE medewerker SET nummer = ?, naam = ?, gbdatum = ?, adres = ? WHERE medewerkerId = ?");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("UPDATE medewerker SET nummer = ?, naam = ?, gbdatum = ?, adres = ? WHERE medewerkerId = ?;");
 		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		preparedStatement.setInt(2, medewerker.getNummer());
 		preparedStatement.setString(3, medewerker.getNaam());
@@ -56,7 +56,7 @@ public class MedewerkerPostgresDaoImpl extends PostgresBaseDao implements Medewe
 
 	@Override
 	public boolean delete(Medewerker medewerker) throws SQLException {
-		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM medewerker WHERE medewerkerId = '" + medewerker.getMedewerkerId() + "'");
+		PreparedStatement preparedStatement = super.getConnection().prepareStatement("DELETE FROM medewerker WHERE medewerkerId = '" + medewerker.getMedewerkerId() + "';");
 		preparedStatement.setString(1, medewerker.getMedewerkerId());
 		return preparedStatement.executeUpdate() == 1;
 	}
