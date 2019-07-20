@@ -9,8 +9,6 @@
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>nl.hu.ipass.WEGWIJSMETWISPR.webservices</param-value>
-			<param-name>jersey.config.server.provider.classnames</param-name>
-    		<param-value>org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

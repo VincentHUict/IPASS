@@ -10,7 +10,7 @@ public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements Gebruik
 		String result = null;
 		try (Connection conn = super.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(
-					"SELECT * FROM medewerkersaccount " + "WHERE gebruikersnaam = '" + name + "' AND wachtwoord = '" + pass + "'");
+					"SELECT * FROM gebruikersaccount " + "WHERE gebruikersnaam = ? AND wachtwoord = ?");
 			ResultSet dbResultSet = pstmt.executeQuery();
 
 			while (dbResultSet.next()) {
@@ -36,5 +36,19 @@ public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements Gebruik
 		} catch (SQLException exc) {
 			exc.printStackTrace();
 		} return result;
+	}
+
+	@Override
+	public boolean saveGebruiker(String gebruikersnaam, String wachtwoord) {
+		try (Connection conn = super.getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(
+									"INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol VALUES(?, ?, ?)");
+			pstmt.execute();
+			return true;
+		} catch (SQLException exc) {
+			System.out.println("Gebruikersnaam en/of wachtwoord al in gebruik!");
+			System.out.println(exc);
+			return false;
+		}
 	}
 }

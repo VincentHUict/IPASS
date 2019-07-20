@@ -32,7 +32,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	@Override
 	public boolean save(Probleem probleem) throws SQLException {
 		PreparedStatement preparedStatement = super.getConnection().prepareStatement(
-				"INSERT INTO probleem(id, registratiedatum) VALUES(?, ?)");
+				"INSERT INTO probleem(id, beschrijving, datum) VALUES(?, ?)");
 		preparedStatement.setInt(1, probleem.getProbleemId());
 		preparedStatement.setDate(2, (Date) probleem.getRegistratieDatum());
 		return preparedStatement.executeUpdate() == 1;

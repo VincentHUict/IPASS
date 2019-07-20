@@ -60,11 +60,11 @@ html, body {
 	text-align: left;
 }
 
-#username {
+#gebruikersnaam {
 	text-align: center;
 	border-radius: 5px;
 }
-#password {
+#wachtwoord {
 	text-align: center;
 	border-radius: 5px;
 }

@@ -3,7 +3,7 @@ saveButton.addEventListener('click', function() {
 	var formData = new FormData(document.querySelector("#login_form"));
 	var encData = new URLSearchParams(formData.entries());
 	
-	fetch('/restservices/authentication', { method: 'POST', body: encData})
+	fetch('restservices/authentication', { method: 'POST', body: encData})
 		.then(function(response) {
 			if (response.ok) {
 				console.log("YES")

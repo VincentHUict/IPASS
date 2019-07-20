@@ -1,9 +1,9 @@
 aaaaaaaaaaaaaaaaaantekeningen
 
-INSERT INTO probleem(id, datum) VALUES(1, '01-10-2018');
-INSERT INTO probleem(id, datum) VALUES(2, '04-09-2015');
-INSERT INTO probleem(id, datum) VALUES(3, '11-09-2003');
-INSERT INTO probleem(id, datum) VALUES(4, '09-03-2009');
+INSERT INTO probleem(id, beschrijving, datum) VALUES(1, 'Gewoon een String', '01-10-2018');
+INSERT INTO probleem(id, beschrijving, datum) VALUES(2, 'Dit is een beschrijving', '04-09-2015');
+INSERT INTO probleem(id, beschrijving, datum) VALUES(3, 'Het probleem is bla', '11-09-2003');
+INSERT INTO probleem(id, beschrijving, datum) VALUES(4, 'Mijn problemen zijn blabla', '09-03-2009');
 
 
 
@@ -24,6 +24,7 @@ INSERT INTO overzicht(id, faq, how_to, melding_id) VALUES(44, null, 'hahaha', 1)
 INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(1, 11, 'Jesse', '10-12-1960', 'Stationsstraat 45');
 INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(2, 34, 'Joost', '01-05-2000', 'Dorpstraat 20');
 INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(3, 12, 'Jantje', '09-03-1985', 'Brugweg 12');
+INSERT INTO medewerker(id, nummer, naam, geboortedatum, adres) VALUES(4, 13, 'Vincent', '13-07-1999', 'Straatweg 13');
 
 
 
@@ -31,6 +32,9 @@ INSERT INTO klant(id, naam) VALUES(1, 'Joost');
 INSERT INTO klant(id, naam) VALUES(2, 'Jasper');
 INSERT INTO klant(id, naam) VALUES(3, 'Jannes');
 INSERT INTO klant(id, naam) VALUES(4, 'Job');
+INSERT INTO klant(id, naam) VALUES(5, 'Joop');
+INSERT INTO klant(id, naam) VALUES(6, 'Vincent');
+INSERT INTO klant(id, naam) VALUES(7, 'Jesper');
 
 
 

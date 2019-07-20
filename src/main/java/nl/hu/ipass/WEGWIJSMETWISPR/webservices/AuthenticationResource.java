@@ -23,20 +23,20 @@ import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerPostgresDaoImpl;
 @Path("/authentication")
 public class AuthenticationResource {
 	final static public Key key = MacProvider.generateKey();
+	private GebruikerDao dao = new GebruikerPostgresDaoImpl();
 
 	@POST
-	@RolesAllowed({"user", "admin"})
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response authenticateUser(@FormParam("username") String nm, 
-									 @FormParam("password") String ww) {
+	public Response authenticateUser(@FormParam("gebruikersnaam") String gebruikersnaam, 
+									 @FormParam("wachtwoord") String wachtwoord) {
 		try {
-			GebruikerDao dao = new GebruikerPostgresDaoImpl();
-			String rol = dao.findRoleForGebruiker(nm, ww);
+			GebruikerPostgresDaoImpl dao = new GebruikerPostgresDaoImpl();
+			String rol = dao.findRoleForGebruiker(gebruikersnaam, wachtwoord);
 			
 			if (rol == null) { throw new IllegalArgumentException("Geen gebruiker gevonden!"); }
 			
-			String token = createToken("gebruikersnaam", rol);
+			String token = createToken(gebruikersnaam, rol);
 			
 			SimpleEntry<String, String> JWT = new SimpleEntry<String, String>("JWT", token);
 			return Response.ok(JWT).build();
@@ -50,11 +50,23 @@ public class AuthenticationResource {
 		expiration.add(Calendar.MINUTE, 30);
 	
 		return Jwts.builder()
-				.setIssuer("http://localhost:4711/WEGWIJSMETWISPR/")
 				.setSubject(gebruikersnaam)
 				.setExpiration(expiration.getTime())
 				.claim("rol", rol)
 				.signWith(SignatureAlgorithm.HS512, key)
 				.compact();
+	}
+	
+	@POST
+	@Path("/add")
+	@Produces("application/json")
+	public Response saveGebruiker ( @FormParam("gebruikersnaam") String gebruikersnaam,
+									@FormParam("wachtwoord") String wachtwoord) {
+		
+		if (dao.saveGebruiker(gebruikersnaam, wachtwoord)) {
+			return Response.ok().build();
+		} else {
+			return Response.status(400).build();
+		}
 	}
 }
