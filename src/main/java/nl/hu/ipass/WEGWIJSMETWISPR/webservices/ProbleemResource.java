@@ -8,7 +8,10 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+import nl.hu.ipass.WEGWIJSMETWISPR.model.Gebruiker;
 import nl.hu.ipass.WEGWIJSMETWISPR.model.Probleem;
+import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerDao;
+import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerPostgresDaoImpl;
 
 import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
@@ -80,9 +83,9 @@ public class ProbleemResource {
 	@GET
 	@Path("probleem_id")
 	@Produces("application/json")
-	public String getProbleemByProbleemId(@PathParam("probleem_id") int probleem_id) throws SQLException, ParseException {
+	public String getProbleemByProbleemId(@PathParam("probleemId") int probleemId) throws SQLException, ParseException {
 		Gson gson = new Gson();
-		return gson.toJson(ServiceProvider.getProbleemService().getProbleemByProbleemId(probleem_id));
+		return gson.toJson(ServiceProvider.getProbleemService().getProbleemByProbleemId(probleemId));
 	}
 
 	@PUT
@@ -160,7 +163,7 @@ public class ProbleemResource {
 			JsonObjectBuilder job = Json.createObjectBuilder();
 			job.add("probleemId", probleem.getProbleemId());
 			job.add("beschrijving", probleem.getBeschrijving());
-			job.add("datum", (JsonValue) probleem.getRegistratieDatum());
+			job.add("registratieDatum", (JsonValue) probleem.getRegistratieDatum());
 			
 			jab.add(job);
 		}
@@ -173,14 +176,14 @@ public class ProbleemResource {
 	//@RolesAllowed("user")
 	@Produces("application/json")
 	public Response createProbleem(@Context MySecurityContext sc,
-									@FormParam("probleem_id") int probleem_id,
+									@FormParam("probleemId") int probleemId,
 									@FormParam("beschrijving") String beschrijving,
-									@FormParam("datum") Date datum) throws SQLException {
+									@FormParam("registratieDatum") Date registratieDatum) throws SQLException {
 		System.out.println("haha");
 		ProbleemService service = ServiceProvider.getProbleemService();
 		boolean role = sc.isUserInRole("user");
 		if (role) {
-			Probleem newProbleem = service.saveProbleem(probleem_id, beschrijving, datum);
+			Probleem newProbleem = service.saveProbleem(probleemId, beschrijving, registratieDatum);
 			if (newProbleem == null) {
 				Map<String, String> messages = new HashMap<String, String>();
 				messages.put("error", "Probleem does not exist!");
@@ -191,5 +194,29 @@ public class ProbleemResource {
 		Map<String, String> messages = new HashMap<String, String>();
 		messages.put("error", "Gebruiker is niet bevoegd!");
 		return Response.status(409).entity(messages).build();
+	}
+	
+	@POST
+	@Path("post")
+	@Produces("application/json")
+	public Response save(@FormParam("username") String username,
+						@FormParam("password") String password,
+						@FormParam("role") String role) {
+		
+		GebruikerDao dao = new GebruikerPostgresDaoImpl();
+		
+		Gebruiker gebruiker = new Gebruiker();
+		gebruiker.setGebruikersnaam(username);
+		gebruiker.setWachtwoord(password);
+		gebruiker.setRol("user");
+		
+		boolean userSaved = dao.save(gebruiker);
+		
+		System.out.println("userSaved: " + userSaved);
+		if (!userSaved) {
+			return Response.status(403).build();
+		} else {
+			return Response.ok().build();
+		}
 	}
 }

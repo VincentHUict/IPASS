@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import nl.hu.ipass.WEGWIJSMETWISPR.model.Gebruiker;
+
 public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements GebruikerDao {
 	public String findRoleForGebruiker(String name, String pass) {
 		String result = null;
@@ -39,7 +41,7 @@ public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements Gebruik
 	}
 
 	@Override
-	public boolean saveGebruiker(String gebruikersnaam, String wachtwoord) {
+	public boolean saveGebruiker(String gebruikersnaam, String wachtwoord, String rol) {
 		try (Connection conn = super.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(
 									"INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES(?, ?, ?);");
@@ -48,6 +50,21 @@ public class GebruikerPostgresDaoImpl extends PostgresBaseDao implements Gebruik
 		} catch (SQLException exc) {
 			System.out.println("Gebruikersnaam en/of wachtwoord al in gebruik!");
 			System.out.println(exc);
+			return false;
+		}
+	}
+
+	@Override
+	public boolean save(Gebruiker gebruiker) {
+		
+		try {
+			Connection conn = super.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO gebruikersaccount(gebruikersnaam, wachtwoord, rol) VALUES('" + gebruiker.getGebruikersnaam() + "','" + gebruiker.getWachtwoord() + "','" + gebruiker.getRol() + "')");
+			
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException exc) {
+			exc.printStackTrace();
 			return false;
 		}
 	}

@@ -16,7 +16,7 @@ function store() {
 		}
 	}
 	
-	fetch('/restservices/problemen/', fetchoptions)
+	fetch('restservices/problemen/', fetchoptions)
 	.then((response) => {
 		console.log(response.status);
 		if (response.status == 403) {
@@ -42,8 +42,8 @@ function initPage() {
 			}
 	}
 	
-	document.querySelector("#error").innerHTML = "";
-	fetch('/restservices/problemen/', fetchoptions)
+//	document.querySelector("#error").innerHTML = "";
+	fetch('restservices/problemen/', fetchoptions)
 		.then((response) => {
 			if (response.status == 403) {
 				document.querySelector('#error').innerHTML = "U dien eerst in te loggen!";

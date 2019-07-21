@@ -95,6 +95,28 @@
 		</div>
 	</footer>
 
+	<script>
+		function login(i) {
+			const formData = new FormData(document.querySelector('#loginform'));
+			const encData = new URLSearchParams(formData.entries());
+			
+			fetch("restservices/authentication/login", { method: 'POST', body: encData})
+			.then((response) => {
+				console.log(response)
+				if (response.status != 200) {
+					console.log("Error");
+				} else {
+					console("Gelukt!");
+				}
+				
+				.then(json => window.localStorage.setItem("TOK", json.JWT))
+				.catch(err => console.error({ err }))
+			})
+		}
+		
+		document.querySelector('#login').addEventListener('click', login);
+	</script>
+
 	<script src="js/login.js"></script>
 	
 </body>

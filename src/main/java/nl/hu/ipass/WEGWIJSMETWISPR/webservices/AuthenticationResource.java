@@ -61,9 +61,10 @@ public class AuthenticationResource {
 	@Path("/add")
 	@Produces("application/json")
 	public Response saveGebruiker ( @FormParam("gebruikersnaam") String gebruikersnaam,
-									@FormParam("wachtwoord") String wachtwoord) {
+									@FormParam("wachtwoord") String wachtwoord,
+									@FormParam("rol") String rol) {
 		
-		if (dao.saveGebruiker(gebruikersnaam, wachtwoord)) {
+		if (dao.saveGebruiker(gebruikersnaam, wachtwoord, rol)) {
 			return Response.ok().build();
 		} else {
 			return Response.status(400).build();

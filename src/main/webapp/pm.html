@@ -61,9 +61,11 @@
 	<div class="container-fluid padding">
 		<div class="row text-center padding">
 			<div class="form-group">
-				<label for="probleem">Probleem: </label>
-				<input class="form-control input-lg" placeholder="Wat is het probleem?" id="probleem" type="text" /><br>
-				<button class="btn btn-outline-default my-2 my-sm-0" type="submit" id="probleem-submit">Indienen</button>
+				<div id="probleem-submit">
+					<label for="probleem">Probleem: </label>
+					<input class="form-control input-lg" placeholder="Wat is het probleem?" id="probleem" type="text" /><br>
+					<button class="btn btn-outline-default my-2 my-sm-0" type="submit" id="probleem-submit" onclick="indienen">Indienen</button>
+				</div>	
 			</div>
 		</div>
 	</div>
@@ -72,7 +74,14 @@
 		<div class="row welcome text-center">
 			<div class="col-12">
 				<h2 class="display-5">Overzicht</h2><br>
-				<p>Hier moet een overzicht komen van problemen die gemeld zijn door klanten. Nadat ze zijn aangemeld door een medewerker.</p>		
+				<p>Hier moet een overzicht komen van problemen die gemeld zijn door klanten. Nadat ze zijn aangemeld door een medewerker.</p>
+				<form action="probleem">
+					<button id="GETprobleem" class="getprobleem" onclick="get">Geef problemen weer</button>
+					<input type="text" id="updateId" placeholder="Wijzig het probleem">
+					<button id="UPDATEprobleem" class="updateprobleem" onclick="update">Wijzig probleem</button>
+					<input type="number" id="deleteId" placeholder="ID">
+					<button id="DELETEprobleem" class="deleteprobleem" onclick="delete">Verwijder probleem</button>
+				</form>	
 			</div>
 		</div>
 	</div>
@@ -120,13 +129,87 @@
 	</footer>
 
 	<script>
-		$(document).ready(function() {
-			$('.navbar-light .dmenu').hover(function() {
-				$(this).find('.sm-menu').first().stop(true, true).slideDown(150);
-			}, function() {
-				$(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+		document.getElementById("probleem-submit").addEventListener("click", indienen);
+		
+		function indienen() {
+			var formData = new FormData(document.querySelector("#indienen"));
+			var encData = new URLSearchParams(formData.entries());
+			
+			fetch("restservices/probleem/post", {method: 'POST', body: encData})
+			.then((response) => {
+				console.log(response)
+				if (response.status == 403) {
+					console.log("Error");
+					alert("In gebruik!")
+				}
+				
+				else if (response.status == 200) {
+					console.log("Gelukt!");
+					alert("Probleem ingediend!")
+				}
 			});
-		});
+		}
+	</script>
+	
+	<script>
+		document.getElementById("GETprobleem").addEventListener("click", get)
+		function get() {
+			fetch("restservices/probleem/overzicht")
+			.then(response => response.json())
+			.then(result => {
+				var probleemOverzicht = document.getElementById('probleemOverzicht')
+				
+				console.log(result);
+				
+			for (let p in result) {
+				console.log(p);
+				
+				probleemOverzicht.innerHTML +=
+					<tr>
+					<td> ${result[p].probleemid}
+					<td> ${result[p].beschrijving}
+					<td> ${result[p].registratiedatum}
+					</tr>
+			}
+			})
+		}
+	</script>
+	
+	<script>
+		document.getElementById("UPDATEprobleem").addEventListener("click", function() {
+			var id = document.getElementById("updateId").value;
+			
+			var formData = new FormData(document.querySelector('#probleem'));
+			var encData = new URLSearchParams(formData.entries());
+			
+			fetch("restservices/probleem/update/" + id, { method: 'PUT', body: encData})
+			.then((response) => {
+				console.log(response)
+			if (response.status != 200) {
+				console.log("Niet gelukt!");
+			} else {
+				console.log("Gelukt!");
+				alert("Probleem is geüpdatet");
+			}	
+			})
+		})
+	</script>
+	
+	<script>
+		document.getElementById("delete").addEventListener("click", function() {
+			var id = document.querySelector("deleteId").value;
+			
+			fetch("restservices/probleem/delete/" + id, { method: 'DELETE'})
+			.then((response) => {
+				console.log(response)
+				if (response.status != 200) {
+					console.log("Error");
+				} else {
+					console.log("Gelukt!");
+					alert("Probleem verwijderd!");
+				}
+			})
+		})
 	</script>
 </body>
 </html>
