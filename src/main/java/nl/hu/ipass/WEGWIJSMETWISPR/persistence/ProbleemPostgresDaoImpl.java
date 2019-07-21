@@ -59,7 +59,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 	}
 
 	@Override
-	public Probleem findByProbleem_id(int probleem_id) {
+	public Probleem findByProbleemId(int probleemId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

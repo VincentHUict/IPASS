@@ -25,7 +25,7 @@ public class KlantPostgresDaoImpl extends PostgresBaseDao implements KlantDao {
 	}
 	
 	private Klant toKlant(ResultSet resultSet) throws SQLException {
-		return new Klant(resultSet.getString("ID"));
+		return new Klant(resultSet.getString("ID"), resultSet.getString("NAAM"));
 	}
 	
 	@Override

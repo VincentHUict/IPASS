@@ -18,9 +18,28 @@ import javax.json.JsonValue;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 @Path("/problemen")
 public class ProbleemResource {
+	private ProbleemService service = ServiceProvider.getProbleemService();
+	
+	@GET
+	@Path("probleem")
+	//@RolesAllowed({"user", "admin"})
+	@Produces("application/json")
+	public Response getProbleem(@PathParam("probleemId") int probleemId) throws SQLException {
+		System.out.println("probleempje hier");
+		Probleem probleem = service.getProbleemByProbleemId(probleemId);
+		
+		if (probleem == null) {
+			Map<String, String> messages = new HashMap<String, String>();
+			messages.put("error", "Probleem bestaat niet!");
+			return Response.status(409).entity(messages).build();
+		}
+		
+		return Response.ok(probleem).build();
+	}
 	
 	@GET
 	@Path("alleproblemen")
@@ -61,19 +80,44 @@ public class ProbleemResource {
 	@GET
 	@Path("probleem_id")
 	@Produces("application/json")
-	public String getProbleemByProbleem_id(@PathParam("probleem_id") int probleem_id) throws SQLException, ParseException {
+	public String getProbleemByProbleemId(@PathParam("probleem_id") int probleem_id) throws SQLException, ParseException {
 		Gson gson = new Gson();
-		return gson.toJson(ServiceProvider.getProbleemService().getProbleemByProbleem_id(probleem_id));
+		return gson.toJson(ServiceProvider.getProbleemService().getProbleemByProbleemId(probleem_id));
 	}
 
 	@PUT
 	@Path("updateprobleem")
 	@Produces("application/json")
-	public String updateProbleem(String msg) throws SQLException {
-		Gson gson = new Gson();
-		Probleem probleem = gson.fromJson(msg, Probleem.class);
-		return gson.toJson(ServiceProvider.getProbleemService().updateProbleem(probleem));
+	public Response updateProbleem(@Context SecurityContext sc, 
+							@FormParam("probleemId") int probleemId,
+							@FormParam("beschrijving") String beschrijving,
+							@FormParam("registratieDatum") Date registratieDatum) throws SQLException {
+		System.out.println(probleemId + beschrijving + registratieDatum);
+		boolean role = sc.isUserInRole("user");
+		if (role) {
+			Probleem probleem = service.updateProbleem(probleemId, beschrijving, registratieDatum);
+			
+			if (probleem == null) {
+				Map<String, String> messages = new HashMap<String, String>();
+				messages.put("error", "Probleem bestaat niet!");
+				return Response.status(409).entity(messages).build();
+			}
+			
+			return Response.ok(probleem).build();
+		}
+		Map<String, String> messages = new HashMap<String, String>();
+		messages.put("error", "U kan deze functie niet uitvoeren!");
+		return Response.status(409).entity(messages).build();
 	}
+	
+//	@PUT
+//	@Path("updateprobleem")
+//	@Produces("application/json")
+//	public String updateProbleem(String msg) throws SQLException {
+//		Gson gson = new Gson();
+//		Probleem probleem = gson.fromJson(msg, Probleem.class);
+//		return gson.toJson(ServiceProvider.getProbleemService().updateProbleem(probleem));
+//	}
 
 	@POST
 	@Path("nieuwprobleem")
@@ -87,12 +131,21 @@ public class ProbleemResource {
 
 	@DELETE
 	@Path("oldprobleem")
-	//@RolesAllowed("admin")
+	//@RolesAllowed({"user", "admin"})
 	@Produces("application/json")
-	public String deleteProbleem(String msg) throws SQLException {
-		Gson gson = new Gson();
-		Probleem probleem = gson.fromJson(msg, Probleem.class);
-		return gson.toJson(ServiceProvider.getProbleemService().deleteProbleem(probleem));
+	public Response deleteProbleem(@Context SecurityContext sc,
+		@PathParam("probleemId") int probleemId) throws SQLException {
+			ProbleemService service = ServiceProvider.getProbleemService();
+			boolean role = sc.isUserInRole("gebruiker");
+			
+			if (role) {
+				if (service.deleteProbleem(probleemId)) {
+					return Response.ok().build();
+				}
+			}
+			Map<String, String> messages = new HashMap<String, String>();
+			messages.put("error", "Gebruiker is niet bevoegd!");
+			return Response.status(409).entity(messages).build();
 	}
 	
 	@GET

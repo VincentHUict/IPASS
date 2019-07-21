@@ -2,12 +2,14 @@ package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
 public class Klant {
 	private String klantId;
+	private String naam;
 	
 	public Klant() {
 	}
 	
-	public Klant(String klantId) {
+	public Klant(String klantId, String naam) {
 		this.klantId = klantId;
+		this.naam = naam;
 	}
 	
 	public String getKlantId() {
@@ -18,6 +20,14 @@ public class Klant {
 		this.klantId = klantId;
 	}
 
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+	
 	@Override
 	public String toString()
 	{

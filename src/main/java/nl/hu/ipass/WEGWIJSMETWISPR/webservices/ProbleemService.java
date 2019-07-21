@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ProbleemService {
+	
 	ProbleemDao probleemDao = new ProbleemPostgresDaoImpl();
 	
 	public List<Probleem> getAllProblemen() throws SQLException {
@@ -15,16 +16,16 @@ public class ProbleemService {
 	}
 	
 //	public List<Probleem> getAllProblemen() throws SQLException {
-//        ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
-//        return probleemPostgresDao.findAll();
+//      ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
+//      return probleemPostgresDao.findAll();
 //  }
 	
-	public Probleem getProbleemByProbleem_id(int probleem_id) throws SQLException {
+	public Probleem getProbleemByProbleemId(int probleemId) throws SQLException {
 		Probleem result = null;
 		
-		for (Probleem p : probleemDao.findAll()) {
-			if (p.getProbleemId() == probleem_id) {
-				result = p;
+		for (Probleem probleem : probleemDao.findAll()) {
+			if (probleem.getProbleemId() == probleemId) {
+				result = probleem;
 				break;
 			}
 		}
@@ -62,19 +63,19 @@ public class ProbleemService {
         return probleemPostgresDao.delete(probleem);
     }
 
-	public Probleem saveProbleem(int probleem_id, String beschrijving, Date registratieDatum) throws SQLException {
-		Probleem probleem = new Probleem(probleem_id, beschrijving, registratieDatum);
-		probleem.setProbleemId(probleem_id);
+	public Probleem saveProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
+		Probleem probleem = new Probleem(probleemId, beschrijving, registratieDatum);
+		probleem.setProbleemId(probleemId);
 		probleem.setBeschrijving(beschrijving);
 		probleem.setRegistratieDatum(registratieDatum);
 		
 		return (probleemDao.save(probleem)) ? probleem : null;
 	}
 	
-	public boolean deleteProbleem(int probleem_id) throws SQLException {
+	public boolean deleteProbleem(int probleemId) throws SQLException {
 		boolean verwijderd = false;
 		
-		Probleem p = probleemDao.findByProbleem_id(probleem_id);
+		Probleem p = probleemDao.findByProbleemId(probleemId);
 		if (p != null) {
 			verwijderd = probleemDao.delete(p);
 		} else {
@@ -83,13 +84,13 @@ public class ProbleemService {
 		return verwijderd;
 	}
 
-	public Probleem updateProbleem(int probleem_id, String beschrijving, Date datum) throws SQLException {
-		Probleem probleem = probleemDao.findByProbleem_id(probleem_id);
-			probleem.setProbleemId(probleem_id);
+	public Probleem updateProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
+		Probleem probleem = probleemDao.findByProbleemId(probleemId);
+			probleem.setProbleemId(probleemId);
 			probleem.setBeschrijving(beschrijving);
-			probleem.setRegistratieDatum(datum);
+			probleem.setRegistratieDatum(registratieDatum);
 			if (probleemDao.update(probleem)) {
-				return probleemDao.findByProbleem_id(probleem_id);
+				return probleemDao.findByProbleemId(probleemId);
 			}
 		return probleem;
 	}

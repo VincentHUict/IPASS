@@ -28,15 +28,15 @@ public class AuthenticationResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response authenticateUser(@FormParam("gebruikersnaam") String gebruikersnaam, 
-									 @FormParam("wachtwoord") String wachtwoord) {
+	public Response authenticateUser(@FormParam("username") String username, 
+									 @FormParam("password") String password) {
 		try {
-			GebruikerPostgresDaoImpl dao = new GebruikerPostgresDaoImpl();
-			String rol = dao.findRoleForGebruiker(gebruikersnaam, wachtwoord);
+			GebruikerDao dao = new GebruikerPostgresDaoImpl();
+			String role = dao.findRoleForGebruiker(username, password);
 			
-			if (rol == null) { throw new IllegalArgumentException("Geen gebruiker gevonden!"); }
+			if (role == null) { throw new IllegalArgumentException("Geen gebruiker gevonden!"); }
 			
-			String token = createToken(gebruikersnaam, rol);
+			String token = createToken(username, role);
 			
 			SimpleEntry<String, String> JWT = new SimpleEntry<String, String>("JWT", token);
 			return Response.ok(JWT).build();
@@ -45,14 +45,14 @@ public class AuthenticationResource {
 		}
 	}
 
-	private String createToken(String gebruikersnaam, String rol) {
+	private String createToken(String username, String role) {
 		Calendar expiration = Calendar.getInstance();
 		expiration.add(Calendar.MINUTE, 30);
 	
 		return Jwts.builder()
-				.setSubject(gebruikersnaam)
+				.setSubject(username)
 				.setExpiration(expiration.getTime())
-				.claim("rol", rol)
+				.claim("role", role)
 				.signWith(SignatureAlgorithm.HS512, key)
 				.compact();
 	}

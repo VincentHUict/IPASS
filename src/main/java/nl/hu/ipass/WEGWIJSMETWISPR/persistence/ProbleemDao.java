@@ -14,5 +14,5 @@ public interface ProbleemDao {
 
 	public boolean delete(Probleem probleem) throws SQLException;
 
-	public Probleem findByProbleem_id(int probleem_id);
+	public Probleem findByProbleemId(int probleemId);
 }

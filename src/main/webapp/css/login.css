@@ -56,19 +56,19 @@ html, body {
 	color: #243949;
 }
 
-#login_form {
+#loginform {
 	text-align: left;
 }
 
-#gebruikersnaam {
+#username {
 	text-align: center;
 	border-radius: 5px;
 }
-#wachtwoord {
+#password {
 	text-align: center;
 	border-radius: 5px;
 }
-#login_button {
+#loginbutton {
 	text-align: center;
 	border-radius: 5px;
 }
