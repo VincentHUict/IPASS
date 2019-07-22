@@ -165,19 +165,3 @@ footer {
 	color: #9499a3;
 	padding-top: 2rem;
 }
-
-
-
-
-
-
-.dropdown{
-	background-color: #ffcccc;
-	font-size: 20px; 
-	width: 60%; 
-	height: 40px; 
-	display: inline-block;
-    box-sizing: border-box;
-    text-align: center;
-	
-}
