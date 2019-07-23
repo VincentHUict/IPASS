@@ -11,10 +11,12 @@ import nl.hu.ipass.WEGWIJSMETWISPR.model.Probleem;
 
 public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements ProbleemDao {
 	
+	//Methode voor het ophalen van alle bekende problemen
 	public ArrayList<Probleem> findAll() {
 		return this.getProblemen();
 	}
-
+	
+	//Methode voor het ophalen van alle bekende problemen
 	public ArrayList<Probleem> getProblemen() {
 		try (Connection conn = super.getConnection()) {
 			ArrayList<Probleem> result = new ArrayList<Probleem>();
@@ -48,6 +50,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 //		return new Probleem(resultSet.getInt("ID"), resultSet.getString("BESCHRIJVING"), resultSet.getDate("DATUM"));
 //	}
 	
+	//Methode voor het opslaan van een nieuw probleem
 	@Override
 	public boolean save(Probleem probleem) {
 		
@@ -67,6 +70,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 		}
 	}
 
+	//Methode voor het updaten van een bestaand probleem
 	public boolean updateProbleem(int id, String beschrijving, Date datum) {
 		try (Connection conn = super.getConnection()) {
 			String query = "UPDATE probleem SET beschrijving = " + beschrijving + " WHERE id = " + id + "";
@@ -83,6 +87,7 @@ public class ProbleemPostgresDaoImpl extends PostgresBaseDao implements Probleem
 //	"UPDATE probleem SET datum = ? WHERE probleemId = ?;");
 //	UPDATE probleem SET beschrijving = 'Bla is het probleem' WHERE id = 3;	
 
+	//Methode voor het verwijderen van een probleem
 	public boolean deleteProbleem(Probleem probleem) {
 		try {
 			Connection conn = super.getConnection();

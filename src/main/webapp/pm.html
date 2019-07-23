@@ -12,6 +12,7 @@
 </head>
 <body>
 	
+	<!-- Begin van de navbar -->
 	<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top shadow p-4 mb-4 bg-white">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -40,14 +41,17 @@
 					</div>
 				</li>
 			</ul>
-
+		
+		<!-- Dit is een zoekknop -->
 		<form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="ZOEKEN" aria-label="Search" />
 			<button class="btn btn-outline-default my-2 my-sm-0 fa fa-search" type="submit"></button>			
 		</form>
-
+		<!-- Einde van de zoekknop -->
+		
 		</div>
 	</nav>
+	<!-- Einde van de navbar -->
 
 	<div class="container-fluid padding">
 		<div class="row welcome text-center">
@@ -58,6 +62,7 @@
 		</div>
 	</div>
 	
+	<!-- Een nieuw probleem indienen -->
 	<div class="container-fluid padding">
 		<div class="row text-center padding">
 			<div class="form-group">
@@ -73,16 +78,18 @@
 			</div>
 		</div>
 	</div>
+	<!-- Einde van nieuw probleem indienen -->
 	
 	<div class="container-fluid padding">
 		<div class="row welcome text-center">
 			<div class="col-12">
 				<h2 class="display-5">Overzicht</h2><br>
-				<p>Hier moet een overzicht komen van problemen die gemeld zijn door klanten. Nadat ze zijn aangemeld door een medewerker.</p>
+				<p>Overzicht van alle meldingen die bij ons bekend zijn.</p>
 			</div>
 		</div>
 	</div>
 	
+	<!-- Alle problemen ophalen -->
 	<table id="probleemInfo" style="text-align : center">
 		<tr>
 			<th>Probleem ID</th>
@@ -93,7 +100,9 @@
 	<div id="GETprobleem">	
 		<button id="GETprobleem" class="getprobleem" onclick="get">Geef alle problemen weer</button>
 	</div>
+	<!-- Eind van problemen ophalen -->
 	
+	<!-- Een probleem wijzigen, aan de hand van probleemid met een nieuwe beschrijving -->
 	<h2 class="display-6">Wijzig uw probleem</h2>
 	<form id="update" style="text-align : center; display: inline-block;">
 			<input type="number" name="probleemid" id="probleemId" placeholder="ID">
@@ -103,13 +112,17 @@
 		<button id="updateId" class="updateprobleem" onclick="update">Wijzig probleem</button>
 	</div>
 	</form>
+	<!-- Eind van wijzigen probleem -->
 	
+	<!-- Begin van probleem deleten -->
 	<h2 class="display-6">Verwijder uw probleem</h2>		
 	<form id="delete">	
 		<input type="number" id="deleteId" placeholder="ID">
 		<button id="deleteId" class="deleteprobleem" onclick="delete">Verwijder probleem</button>		
-	</form>	
+	</form>
+	<!-- Eind van probleem verwijderen -->
 	
+	<!-- Extra informatie met doorverwijzingen op de webapplicatie -->
 	<hr class="my-1">
 	<div class="container-fluid padding">
 		<div class="row text-center padding">
@@ -123,7 +136,9 @@
 			</div>
 		</div>
 	</div>
+	<!-- Einde van de extra informatiekoppen -->
 
+	<!-- Begin van de footer, met kopjes voor het contactinfo, inloggen en registreren -->
 	<footer>
 		<div class="container-fluid padding">
 			<div class="row text-center">
@@ -151,7 +166,9 @@
 			<p class="col-12">Deze webapplicatie is mede mogelijk gemaakt door Vincent Sels, student HBO-ICT.</p>
 		</div>
 	</footer>
+	<!-- Eind van de footer -->
 
+	<!-- JavaScript code voor het indienen van een probleem -->
 	<script>
 	document.getElementById("probleemsubmit").addEventListener("click", indienen);
 		
@@ -172,7 +189,9 @@
 		});
 	}
 	</script>
+	<!-- Einde van probleem indienen -->
 	
+	<!-- JavaScript code voor het verkrijgen van alle problemen -->
 	<script>
 	document.getElementById("GETprobleem").addEventListener("click", get)
 	function get() {
@@ -197,7 +216,9 @@
 	 })
 	}
 	</script>
+	<!-- Einde van problemen ophalen -->
 	
+	<!-- JavaScript code voor het wijzigen van een bestaand probleem aan de hand van het id -->
 	<script>
 	document.getElementById("updateId").addEventListener("click", function() {
 		var id = document.getElementById("probleemId").value;
@@ -217,7 +238,9 @@
 		})
 	})
 	</script>
+	<!-- Einde van wijzigen probleem -->
 	
+	<!-- JavaScript code voor het deleten van een bestaand probleem -->
 	<script>
 	document.getElementById("deleteId").addEventListener("click", function() {
 		var id = document.querySelector("deleteId").value;
@@ -234,5 +257,6 @@
 	 	})
 	})
 	</script>
+	<!-- Einde van probleem verwijderen -->
 </body>
 </html>

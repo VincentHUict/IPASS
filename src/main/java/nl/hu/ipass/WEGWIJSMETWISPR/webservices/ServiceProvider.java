@@ -23,6 +23,10 @@ import nl.hu.ipass.WEGWIJSMETWISPR.model.Probleem;
 import nl.hu.ipass.WEGWIJSMETWISPR.persistence.ProbleemDao;
 import nl.hu.ipass.WEGWIJSMETWISPR.persistence.ProbleemPostgresDaoImpl;
 
+/*
+ * Dit is de URI die je aanroept om de JSON terug te krijgen
+ */
+
 @Path("/problemen")
 public class ServiceProvider {
 	private ProbleemService probleemService = new ProbleemService();
@@ -30,6 +34,10 @@ public class ServiceProvider {
 	public ProbleemService getProbleemService() {
 		return probleemService;
 	}
+	
+	/*
+	 * Deze methode is om een probleem aan te maken
+	 */
 	
 	@POST
 	@Path("post/probleem")
@@ -52,6 +60,10 @@ public class ServiceProvider {
 		}
 	}
 	
+	/*
+	 * Met deze methode kan je alle problemen ophalen uit de DB
+	 */
+	
 	@Path("get/probleem")
 	@GET
 	@Produces("application/json")
@@ -70,6 +82,10 @@ public class ServiceProvider {
 		JsonArray array = jab.build();
 		return array.toString();
 	}
+	
+	/*
+	 * Deze methode kan je probleem updaten, bijvoorbeeld als je een andere beschrijving wilt 
+	 */
 	
 	@PUT
 	@Path("update/probleem/{id}")
@@ -92,6 +108,10 @@ public class ServiceProvider {
 			return Response.ok().build();
 		}
 	}
+	
+	/*
+	 * Met deze methode kan je een probleem verwijderen uit de DB
+	 */
 	
 	@Path("delete/probleem/{id}")
 	@DELETE
