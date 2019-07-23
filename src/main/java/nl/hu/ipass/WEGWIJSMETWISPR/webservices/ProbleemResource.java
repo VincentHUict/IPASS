@@ -8,10 +8,10 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import nl.hu.ipass.WEGWIJSMETWISPR.model.Gebruiker;
+//import nl.hu.ipass.WEGWIJSMETWISPR.model.Gebruiker;
 import nl.hu.ipass.WEGWIJSMETWISPR.model.Probleem;
-import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerDao;
-import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerPostgresDaoImpl;
+//import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerDao;
+//import nl.hu.ipass.WEGWIJSMETWISPR.persistence.GebruikerPostgresDaoImpl;
 
 import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
@@ -195,28 +195,28 @@ public class ProbleemResource {
 //		messages.put("error", "Gebruiker is niet bevoegd!");
 //		return Response.status(409).entity(messages).build();
 //	}
-	
-	@POST
-	@Path("savegebruiker")
-	@Produces("application/json")
-	public Response save(@FormParam("username") String username,
-						@FormParam("password") String password,
-						@FormParam("role") String role) {
-		
-		GebruikerDao dao = new GebruikerPostgresDaoImpl();
-		
-		Gebruiker gebruiker = new Gebruiker();
-		gebruiker.setGebruikersnaam(username);
-		gebruiker.setWachtwoord(password);
-		gebruiker.setRol("user");
-		
-		boolean userSaved = dao.save(gebruiker);
-		
-		System.out.println("userSaved: " + userSaved);
-		if (!userSaved) {
-			return Response.status(403).build();
-		} else {
-			return Response.ok().build();
-		}
-	}
+//	
+//	@POST
+//	@Path("savegebruiker")
+//	@Produces("application/json")
+//	public Response save(@FormParam("username") String username,
+//						@FormParam("password") String password,
+//						@FormParam("role") String role) {
+//		
+//		GebruikerDao dao = new GebruikerPostgresDaoImpl();
+//		
+//		Gebruiker gebruiker = new Gebruiker();
+//		gebruiker.setGebruikersnaam(username);
+//		gebruiker.setWachtwoord(password);
+//		gebruiker.setRol("user");
+//		
+//		boolean userSaved = dao.save(gebruiker);
+//		
+//		System.out.println("userSaved: " + userSaved);
+//		if (!userSaved) {
+//			return Response.status(403).build();
+//		} else {
+//			return Response.ok().build();
+//		}
+//	}
 }
