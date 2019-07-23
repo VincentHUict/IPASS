@@ -223,10 +223,10 @@
 	document.getElementById("updateId").addEventListener("click", function() {
 		var id = document.getElementById("probleemId").value;
 		
-		var formData = new FormData(document.querySelector('update'));
+		var formData = new FormData(document.querySelector('#update'));
 		var encData = new URLSearchParams(formData.entries());
 		
-		fetch("restservices/problemen/update/probleem/" + id, { method: 'PUT', body: encData})
+		fetch("restservices/problemen/update/probleem/${id}, { method: 'PUT', body: encData})
 		.then((response) => {
 			console.log(response)
 		if (response.status != 200) {
@@ -243,7 +243,7 @@
 	<!-- JavaScript code voor het deleten van een bestaand probleem -->
 	<script>
 	document.getElementById("deleteId").addEventListener("click", function() {
-		var id = document.querySelector("deleteId").value;
+		var id = document.getElementById("deleteId").value;
 		
 		fetch("restservices/problemen/delete/probleem/" + id, { method: 'DELETE'})
 		.then((response) => {
