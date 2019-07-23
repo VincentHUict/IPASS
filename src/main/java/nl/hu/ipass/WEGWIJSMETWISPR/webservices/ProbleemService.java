@@ -4,14 +4,14 @@ import nl.hu.ipass.WEGWIJSMETWISPR.persistence.*;
 import nl.hu.ipass.WEGWIJSMETWISPR.model.*;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProbleemService {
 	
-	ProbleemDao probleemDao = new ProbleemPostgresDaoImpl();
-	
-	public List<Probleem> getAllProblemen() throws SQLException {
+	private ProbleemPostgresDaoImpl probleemDao = new ProbleemPostgresDaoImpl(); 
+		
+	public ArrayList<Probleem> getAllProblemen() {
 		return probleemDao.findAll();
 	}
 	
@@ -53,45 +53,45 @@ public class ProbleemService {
         return probleemPostgresDao.save(probleem);
     }
     
-    public boolean updateProbleem(Probleem probleem) throws SQLException {
-        ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
-        return probleemPostgresDao.update(probleem);
-    }
+//    public boolean updateProbleem(Probleem probleem) throws SQLException {
+//        ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
+//        return probleemPostgresDao.updateProbleem(probleem);
+//    }
 
     public boolean deleteProbleem(Probleem probleem) throws SQLException {
         ProbleemPostgresDaoImpl probleemPostgresDao = new ProbleemPostgresDaoImpl();
-        return probleemPostgresDao.delete(probleem);
+        return probleemPostgresDao.deleteProbleem(probleem);
     }
 
-	public Probleem saveProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
-		Probleem probleem = new Probleem(probleemId, beschrijving, registratieDatum);
-		probleem.setProbleemId(probleemId);
-		probleem.setBeschrijving(beschrijving);
-		probleem.setRegistratieDatum(registratieDatum);
-		
-		return (probleemDao.save(probleem)) ? probleem : null;
-	}
+//	public Probleem saveProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
+//		Probleem probleem = new Probleem(probleemId, beschrijving, registratieDatum);
+//		probleem.setProbleemId(probleemId);
+//		probleem.setBeschrijving(beschrijving);
+//		probleem.setRegistratieDatum(registratieDatum);
+//		
+//		return (probleemDao.save(probleem)) ? probleem : null;
+//	}
 	
 	public boolean deleteProbleem(int probleemId) throws SQLException {
 		boolean verwijderd = false;
 		
 		Probleem p = probleemDao.findByProbleemId(probleemId);
 		if (p != null) {
-			verwijderd = probleemDao.delete(p);
+			verwijderd = probleemDao.deleteProbleem(p);
 		} else {
 			throw new IllegalArgumentException("Code bestaat niet!");
 		}
 		return verwijderd;
 	}
 
-	public Probleem updateProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
-		Probleem probleem = probleemDao.findByProbleemId(probleemId);
-			probleem.setProbleemId(probleemId);
-			probleem.setBeschrijving(beschrijving);
-			probleem.setRegistratieDatum(registratieDatum);
-			if (probleemDao.update(probleem)) {
-				return probleemDao.findByProbleemId(probleemId);
-			}
-		return probleem;
-	}
+//	public Probleem updateProbleem(int probleemId, String beschrijving, Date registratieDatum) throws SQLException {
+//		Probleem probleem = probleemDao.findByProbleemId(probleemId);
+//			probleem.setProbleemId(probleemId);
+//			probleem.setBeschrijving(beschrijving);
+//			probleem.setRegistratieDatum(registratieDatum);
+//			if (probleemDao.update(probleem)) {
+//				return probleemDao.findByProbleemId(probleemId);
+//			}
+//		return probleem;
+//	}
 }

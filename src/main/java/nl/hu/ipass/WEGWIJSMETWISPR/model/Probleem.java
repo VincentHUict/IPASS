@@ -1,6 +1,6 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Probleem {
 	private int probleemId;
@@ -20,8 +20,8 @@ public class Probleem {
 		return probleemId;
 	}
 	
-	public void setProbleemId(int probleeId) {
-		this.probleemId = probleeId;
+	public void setProbleemId(int probleemId) {
+		this.probleemId = probleemId;
 	}
 	
 	public Date getRegistratieDatum() {

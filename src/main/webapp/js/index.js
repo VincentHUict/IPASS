@@ -36,41 +36,41 @@ function store() {
 //function updateProbleem(clickedButton) {	
 //}
 
-function initPage() {
-	let fetchoptions = { headers: {
-				'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
-			}
-	}
-	
-//	document.querySelector("#error").innerHTML = "";
-	fetch('restservices/problemen/', fetchoptions)
-		.then((response) => {
-			if (response.status == 403) {
-				document.querySelector('#error').innerHTML = "U dien eerst in te loggen!";
-			} else {
-				return response.json();
-			}
-		})
-		.then((myJson) => {
-			let table = document.querySelector('tbody');
-			table.innerHTML = "";
-			
-			var deleteButtons = document.getElementsByClassName('delete');
-			for (i = 0; i < deleteButtons.length; i++) {
-				deleteButtons[i].addEventListener('click', (event) => {
-					let deletebutton = event.target.closest(".delete");
-					deleteLand(deletebutton.getAttribute("data-code"));
-				}, false);
-			}
-			
-			var updateButtons = document.getElementsByClassName('update');
-			for (i = 0; i < updateButtons.length; i++) {
-				updateButtons[i].addEventListener('click', (event) => {
-					let updateButton = event.target.closest(".update");
-					updateProbleem(updateButton);
-				}, false);
-			}
-		})
-}
-
-initPage();
+//function initPage() {
+//	let fetchoptions = { headers: {
+//				'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+//			}
+//	}
+//	
+////	document.querySelector("#error").innerHTML = "";
+//	fetch('restservices/problemen/', fetchoptions)
+//		.then((response) => {
+//			if (response.status == 403) {
+//				document.querySelector('#error').innerHTML = "U dien eerst in te loggen!";
+//			} else {
+//				return response.json();
+//			}
+//		})
+//		.then((myJson) => {
+//			let table = document.querySelector('tbody');
+//			table.innerHTML = "";
+//			
+//			var deleteButtons = document.getElementsByClassName('delete');
+//			for (i = 0; i < deleteButtons.length; i++) {
+//				deleteButtons[i].addEventListener('click', (event) => {
+//					let deletebutton = event.target.closest(".delete");
+//					deleteLand(deletebutton.getAttribute("data-code"));
+//				}, false);
+//			}
+//			
+//			var updateButtons = document.getElementsByClassName('update');
+//			for (i = 0; i < updateButtons.length; i++) {
+//				updateButtons[i].addEventListener('click', (event) => {
+//					let updateButton = event.target.closest(".update");
+//					updateProbleem(updateButton);
+//				}, false);
+//			}
+//		})
+//}
+//
+//initPage();

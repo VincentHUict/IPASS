@@ -1,8 +1,6 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.persistence;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 

@@ -1,18 +1,17 @@
 package nl.hu.ipass.WEGWIJSMETWISPR.persistence;
 
-import java.sql.SQLException;
-import java.util.List;
-
+import java.sql.Date;
+import java.util.ArrayList;
 import nl.hu.ipass.WEGWIJSMETWISPR.model.Probleem;
 
 public interface ProbleemDao {
-	public List<Probleem> findAll() throws SQLException;
+	public ArrayList<Probleem> findAll();
 
-	public boolean save(Probleem probleem) throws SQLException;
+	public boolean save(Probleem probleem);
 
-	public boolean update(Probleem probleem) throws SQLException;
+	public boolean updateProbleem(int id, String beschrijving, Date datum);
 
-	public boolean delete(Probleem probleem) throws SQLException;
+	public boolean deleteProbleem(Probleem probleem);
 
 	public Probleem findByProbleemId(int probleemId);
 }

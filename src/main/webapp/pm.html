@@ -61,11 +61,15 @@
 	<div class="container-fluid padding">
 		<div class="row text-center padding">
 			<div class="form-group">
-				<div id="probleem-submit">
-					<label for="probleem">Probleem: </label>
-					<input class="form-control input-lg" placeholder="Wat is het probleem?" id="probleem" type="text" /><br>
-					<button class="btn btn-outline-default my-2 my-sm-0" type="submit" id="probleem-submit" onclick="indienen">Indienen</button>
-				</div>	
+				<form id="indienen">
+					<p>Probleem: </p>
+					<input type="number" name="probleemid" class="form-control" placeholder="Probleemnummer" id="probleemId" />	
+					<input type="text" name="beschrijving" class="form-control input-lg" placeholder="Wat is het probleem?" id="beschrijving" />
+					<input type="date" name="registratiedatum" class="form-control" placeholder="Datum van vandaag" id="registratieDatum" />
+				</form>	
+				<div id="probleemsubmit">
+					<button id="probleemsubmit" class="btn btn-outline-default my-2 my-sm-0" onclick="indienen">Indienen</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -75,16 +79,36 @@
 			<div class="col-12">
 				<h2 class="display-5">Overzicht</h2><br>
 				<p>Hier moet een overzicht komen van problemen die gemeld zijn door klanten. Nadat ze zijn aangemeld door een medewerker.</p>
-				<form action="probleem">
-					<button id="GETprobleem" class="getprobleem" onclick="get">Geef problemen weer</button>
-					<input type="text" id="updateId" placeholder="Wijzig het probleem">
-					<button id="UPDATEprobleem" class="updateprobleem" onclick="update">Wijzig probleem</button>
-					<input type="number" id="deleteId" placeholder="ID">
-					<button id="DELETEprobleem" class="deleteprobleem" onclick="delete">Verwijder probleem</button>
-				</form>	
 			</div>
 		</div>
 	</div>
+	
+	<table id="probleemInfo" style="text-align : center">
+		<tr>
+			<th>Probleem ID</th>
+			<th>Beschrijving</th>
+			<th>Datum gemeld</th>
+		</tr>
+	</table>
+	<div id="GETprobleem">	
+		<button id="GETprobleem" class="getprobleem" onclick="get">Geef alle problemen weer</button>
+	</div>
+	
+	<h2 class="display-6">Wijzig uw probleem</h2>
+	<form id="update" style="text-align : center; display: inline-block;">
+			<input type="number" name="probleemid" id="probleemId" placeholder="ID">
+			<input type="text" name="beschrijving" id="beschrijving" placeholder="Nieuwe beschrijving">
+	
+	<div id="updateId" style="text-align : center">
+		<button id="updateId" class="updateprobleem" onclick="update">Wijzig probleem</button>
+	</div>
+	</form>
+	
+	<h2 class="display-6">Verwijder uw probleem</h2>		
+	<form id="delete">	
+		<input type="number" id="deleteId" placeholder="ID">
+		<button id="deleteId" class="deleteprobleem" onclick="delete">Verwijder probleem</button>		
+	</form>	
 	
 	<hr class="my-1">
 	<div class="container-fluid padding">
@@ -129,87 +153,86 @@
 	</footer>
 
 	<script>
-		document.getElementById("probleem-submit").addEventListener("click", indienen);
+	document.getElementById("probleemsubmit").addEventListener("click", indienen);
 		
-		function indienen() {
-			var formData = new FormData(document.querySelector("#indienen"));
-			var encData = new URLSearchParams(formData.entries());
-			
-			fetch("restservices/probleem/post", {method: 'POST', body: encData})
-			.then((response) => {
-				console.log(response)
-				if (response.status == 403) {
-					console.log("Error");
-					alert("In gebruik!")
-				}
-				
-				else if (response.status == 200) {
-					console.log("Gelukt!");
-					alert("Probleem ingediend!")
-				}
-			});
-		}
-	</script>
-	
-	<script>
-		document.getElementById("GETprobleem").addEventListener("click", get)
-		function get() {
-			fetch("restservices/probleem/overzicht")
-			.then(response => response.json())
-			.then(result => {
-				var probleemOverzicht = document.getElementById('probleemOverzicht')
-				
-				console.log(result);
-				
-			for (let p in result) {
-				console.log(p);
-				
-				probleemOverzicht.innerHTML +=
-					<tr>
-					<td> ${result[p].probleemid}
-					<td> ${result[p].beschrijving}
-					<td> ${result[p].registratiedatum}
-					</tr>
-			}
-			})
-		}
-	</script>
-	
-	<script>
-		document.getElementById("UPDATEprobleem").addEventListener("click", function() {
-			var id = document.getElementById("updateId").value;
-			
-			var formData = new FormData(document.querySelector('#probleem'));
-			var encData = new URLSearchParams(formData.entries());
-			
-			fetch("restservices/probleem/update/" + id, { method: 'PUT', body: encData})
-			.then((response) => {
-				console.log(response)
+	function indienen() {
+		var formData = new FormData(document.querySelector("#indienen"));
+		var encData = new URLSearchParams(formData.entries());
+		
+		fetch("restservices/problemen/post/probleem", {method: 'POST', body: encData})
+		.then((response) => {
+			console.log(response)
 			if (response.status != 200) {
-				console.log("Niet gelukt!");
+				console.log("Error");
+				alert("Geen nieuw probleem aangemaakt!")
 			} else {
-				console.log("Gelukt!");
-				alert("Probleem is geüpdatet");
-			}	
-			})
-		})
+				console.log("Succes");
+				alert("Nieuw probleem aangemaakt!")
+			}
+		});
+	}
 	</script>
 	
 	<script>
-		document.getElementById("delete").addEventListener("click", function() {
-			var id = document.querySelector("deleteId").value;
+	document.getElementById("GETprobleem").addEventListener("click", get)
+	function get() {
+		fetch("restservices/problemen/get/probleem")
+		.then(response => response.json())
+		.then(result => {
+			var probleemInfo = document.getElementById('probleemInfo')
 			
-			fetch("restservices/probleem/delete/" + id, { method: 'DELETE'})
-			.then((response) => {
-				console.log(response)
-				if (response.status != 200) {
-					console.log("Error");
-				} else {
-					console.log("Gelukt!");
-					alert("Probleem verwijderd!");
-				}
-			})
+			console.log(result);
+			
+		for (let p in result) {
+			console.log(p);
+			
+			probleemInfo.innerHTML += `
+			<tr>
+				<th> ${result[p].probleemid} </th>
+				<th> ${result[p].beschrijving} </th>
+				<th> ${result[p].registratiedatum} </th>
+			</tr>
+			`
+		}		
+	 })
+	}
+	</script>
+	
+	<script>
+	document.getElementById("updateId").addEventListener("click", function() {
+		var id = document.getElementById("probleemId").value;
+		
+		var formData = new FormData(document.querySelector('update'));
+		var encData = new URLSearchParams(formData.entries());
+		
+		fetch("restservices/problemen/update/probleem/" + id, { method: 'PUT', body: encData})
+		.then((response) => {
+			console.log(response)
+		if (response.status != 200) {
+			console.log("Niet gelukt!");
+		} else {
+			console.log("Gelukt!");
+			alert("Probleem is geüpdatet");
+		}	
 		})
+	})
+	</script>
+	
+	<script>
+	document.getElementById("deleteId").addEventListener("click", function() {
+		var id = document.querySelector("deleteId").value;
+		
+		fetch("restservices/problemen/delete/probleem/" + id, { method: 'DELETE'})
+		.then((response) => {
+			console.log(response)
+		if (response.status != 200) {
+			console.log("Error");
+		} else {
+			console.log("Gelukt!");
+			alert("Probleem " + id + " verwijderd!");
+		}
+	 	})
+	})
 	</script>
 </body>
 </html>

@@ -1,9 +1,12 @@
 aaaaaaaaaaaaaaaaaantekeningen
 
+postgres://xmqrghhfiarkyu:b93936ab368806041fb04448e5af7047bdcf3edb303fe5b8a3e52078f30254ac@ec2-54-217-219-235.eu-west-1.compute.amazonaws.com:5432/de9lqv2tqicqtv
+
 INSERT INTO probleem(id, beschrijving, datum) VALUES(1, 'Gewoon een String', '01-10-2018');
 INSERT INTO probleem(id, beschrijving, datum) VALUES(2, 'Dit is een beschrijving', '04-09-2015');
 INSERT INTO probleem(id, beschrijving, datum) VALUES(3, 'Het probleem is bla', '11-09-2003');
 INSERT INTO probleem(id, beschrijving, datum) VALUES(4, 'Mijn problemen zijn blabla', '09-03-2009');
+UPDATE probleem SET beschrijving = 'Bla is het probleem' WHERE id = 3;
 
 
 
